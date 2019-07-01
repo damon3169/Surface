@@ -9,12 +9,17 @@ public class CellController : MonoBehaviour
 	float timerForDoubleClick = 0.0f;
 	float delay = 0.3f;
 	bool isDoubleClick = false;
-	enum stateCell { reveal, hide};
-	stateCell cellState;
+	public enum stateCell { reveal, hide};
+	stateCell cellState = stateCell.hide;
 	public Sprite hideCellSprite;
 	public Sprite revealCellSprite;
 	public PlayerController submarine;
 
+
+	private void Start()
+	{
+		cellState = stateCell.hide;
+	}
 
 	void Update()
 	{
@@ -48,9 +53,8 @@ public class CellController : MonoBehaviour
 		if (isDoubleClick == true && timerForDoubleClick < delay && submarine.nearCellList.Contains(this) && !submarine.isMovingToCell)
 		{
 			//Faire se deplacer le player et ouvrir popup
-			cellState = stateCell.reveal;
 			
-			CellStateChange();
+			
 
 			submarine.MoveToCell(this.gameObject);
 		}
@@ -62,19 +66,21 @@ public class CellController : MonoBehaviour
 		}
 	}
 
-	void CellStateChange()
+	public void CellStateChange(stateCell newState)
 	{
-		Sprite cellSprite =  this.GetComponent<SpriteRenderer>().sprite;
+		SpriteRenderer cellSpriteRenderer =  this.GetComponent<SpriteRenderer>();
+		cellState = newState;
+		Debug.Log(cellState);
 		switch (cellState)
 		{
 			case stateCell.reveal:
 				{
-					cellSprite = revealCellSprite;
+					cellSpriteRenderer.sprite = revealCellSprite;
 					break;
 				}
 			case stateCell.hide:
 				{
-					cellSprite = hideCellSprite;
+					cellSpriteRenderer.sprite = hideCellSprite;
 					break;
 				}
 			default: break;

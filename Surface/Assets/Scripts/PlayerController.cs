@@ -27,10 +27,28 @@ public class PlayerController : MonoBehaviour
 	private float timeStartedLerping;
 
 
+	public bool _isMovingToCell
+	{
+		get { return isMovingToCell; }
+		set
+		{
+			if (isMovingToCell != value)
+			{
+				isMovingToCell = value;
+				// Run some function or event here
+				if (!isMovingToCell)
+				{
+					currentCell.CellStateChange(CellController.stateCell.reveal);
+					Debug.Log("test");
+				}
+			}
+		}
+	}
+
 	public void MoveToCell(GameObject newCell)
 	{
 		cellTargetPosition = newCell.transform.position;
-		isMovingToCell = true;
+		_isMovingToCell = true;
 		timeStartedLerping = Time.time;
 		_startPosition = this.transform.position;
 		distanceToMove = Mathf.Abs(Vector3.Distance(_startPosition, cellTargetPosition));
@@ -50,7 +68,7 @@ public class PlayerController : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		if (isMovingToCell)
+		if (_isMovingToCell)
 		{
 			//We want percentage = 0.0 when Time.time = _timeStartedLerping
 			//and percentage = 1.0 when Time.time = _timeStartedLerping + timeTakenDuringLerp
@@ -68,7 +86,7 @@ public class PlayerController : MonoBehaviour
 			if (percentageComplete >= 1.0f)
 			{
 				foundCloseCell();
-				isMovingToCell = false;
+				_isMovingToCell = false;
 			}
 		}
 	}
