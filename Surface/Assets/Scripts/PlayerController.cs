@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
 	private Vector3 cellTargetPosition;
 	public float timeTakenDuringLerp = 1f;
 	public CellController currentCell;
+	public CellController previousCell;
 
 	/// <summary>
 	/// How far the object should move when 'space' is pressed
@@ -35,11 +36,16 @@ public class PlayerController : MonoBehaviour
 			if (isMovingToCell != value)
 			{
 				isMovingToCell = value;
-				// Run some function or event here
+				// Le sous marin arrive sur la cells
 				if (!isMovingToCell)
 				{
+					//si cell est reveler alors montrer popup
+					if(currentCell.cellState == CellController.stateCell.hide)
+					{
+						currentCell.OpenMyPopup();
+					}  
 					currentCell.CellStateChange(CellController.stateCell.reveal);
-					Debug.Log("test");
+					currentCell.EffectPlayerIn();
 				}
 			}
 		}
@@ -52,8 +58,13 @@ public class PlayerController : MonoBehaviour
 		timeStartedLerping = Time.time;
 		_startPosition = this.transform.position;
 		distanceToMove = Mathf.Abs(Vector3.Distance(_startPosition, cellTargetPosition));
+		if (currentCell!= null)
+		{
+			previousCell = currentCell;
+		}
 		currentCell = newCell.GetComponent<CellController>();
 	}
+
 
 	public void addBattery()
 	{
