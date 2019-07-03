@@ -2,27 +2,40 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DonjonGenerator : MonoBehaviour
+public class PortionGenerator : MonoBehaviour
 {
-    List<int[]> donjon = new List<int[]>();
+    List<int[]> portion = new List<int[]>();
     LinesGenerator linesGenerator = new LinesGenerator();
 
     private void Start()
     {
-        InitializeDonjon(10);
+        for(int i = 0; i < 10; i++)
+        {
+            Generate(10);
+        }
     }
 
-    void InitializeDonjon(int height)
+    void Generate(int height)
     {
         int randDifficulty = 0;
         int[] newLine = new int[1];
         float difficultyValue = 0f;
         newLine[0] = 6; //Case de depart vide
-        donjon.Add(newLine);
+        portion.Add(newLine);
 
         for (int i = 1; i < height; i++)
         {
-            randDifficulty = Random.Range(1, 4);
+            randDifficulty = Random.Range(0, 5);
+            /*if(randDifficulty <= 2)
+            {
+                //Debug.Log("Difficulty: " + randDifficulty);
+                int tmp = Random.Range(0, 100);
+                //Debug.Log("TMP: " + tmp);
+                if (tmp < 75) randDifficulty = Random.Range(3,5);
+                //Debug.Log("New Difficulty: " + randDifficulty);
+            }*/
+            if (randDifficulty > 4) randDifficulty = 4;
+            if (randDifficulty < 1) randDifficulty = 1;
             difficultyValue += randDifficulty;
             if(i == 1) newLine = linesGenerator.Generate(2, randDifficulty);
             else if(i == 2) newLine = linesGenerator.Generate(3, randDifficulty);
@@ -32,19 +45,19 @@ public class DonjonGenerator : MonoBehaviour
                 Debug.LogError("Difficultés non valide");
                 return;
             }
-            donjon.Add(newLine);
+            portion.Add(newLine);
         }
         difficultyValue /= height - 1;
         Debug.Log("Total Difficuty: " + difficultyValue);
-        DebugDonjon();
+        //DebugDonjon();
 
     }
 
     private void DebugDonjon()
     {
-        for(int i = 0; i < donjon.Count; i++)
+        for(int i = 0; i < portion.Count; i++)
         {
-            Debug.Log(linesGenerator.DebugLine(donjon[i]));
+            Debug.Log(linesGenerator.DebugLine(portion[i]));
         }
     }
 
