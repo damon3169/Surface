@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
 	public float timeTakenDuringLerp = 1f;
 	public CellController currentCell;
 	public CellController previousCell;
+	public int batterieCount= 0;
 
 	/// <summary>
 	/// How far the object should move when 'space' is pressed
@@ -105,5 +106,10 @@ public class PlayerController : MonoBehaviour
 	void foundCloseCell()
 	{
 		//fonction change les cells a proche contenu dans closeCellList
+	}
+
+	public void AddBatterie()
+	{
+		batterieCount++;
 	}
 }

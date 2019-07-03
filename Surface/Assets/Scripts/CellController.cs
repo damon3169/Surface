@@ -64,7 +64,7 @@ public class CellController : MonoBehaviour
 	protected virtual void OnMouseUp()
 	{
 
-		if (Time.time - timeHold > timeHoldRelease)
+		if (Time.time - timeHold > timeHoldRelease && cellState == stateCell.reveal)
 		{
 			OpenMyPopup();
 		}

@@ -1,25 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &8976110057279741326
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7375754522092190089}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36f46705729ff98448d81ab0729cb321, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cellState: 1
-  hideCellSprite: {fileID: 0}
-  revealCellSprite: {fileID: 0}
-  submarine: {fileID: 0}
-  myPopup: {fileID: 0}
-  timeHold: 0
-  timeHoldRelease: 0.8
---- !u!1001 &8182677945606581927
+--- !u!1001 &6133023291389265678
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -29,22 +10,33 @@ PrefabInstance:
     - target: {fileID: 1717357534639331118, guid: 9df0cb9848129fd4182c6512ae1733b0,
         type: 3}
       propertyPath: m_Name
-      value: Obstacle Cell
+      value: CellIncident Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 1717357534639331119, guid: 9df0cb9848129fd4182c6512ae1733b0,
+        type: 3}
+      propertyPath: submarine
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1717357534639331119, guid: 9df0cb9848129fd4182c6512ae1733b0,
+        type: 3}
+      propertyPath: myPopup
+      value: 
+      objectReference: {fileID: 7622404251633529892, guid: 8b325186051d2f149975fad0cf534a77,
+        type: 3}
     - target: {fileID: 1717357534639331117, guid: 9df0cb9848129fd4182c6512ae1733b0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.014809132
       objectReference: {fileID: 0}
     - target: {fileID: 1717357534639331117, guid: 9df0cb9848129fd4182c6512ae1733b0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -2.54
       objectReference: {fileID: 0}
     - target: {fileID: 1717357534639331117, guid: 9df0cb9848129fd4182c6512ae1733b0,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 58.9
       objectReference: {fileID: 0}
     - target: {fileID: 1717357534639331117, guid: 9df0cb9848129fd4182c6512ae1733b0,
         type: 3}
@@ -86,12 +78,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1717357534639331119, guid: 9df0cb9848129fd4182c6512ae1733b0, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9df0cb9848129fd4182c6512ae1733b0, type: 3}
---- !u!1 &7375754522092190089 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1717357534639331118, guid: 9df0cb9848129fd4182c6512ae1733b0,
-    type: 3}
-  m_PrefabInstance: {fileID: 8182677945606581927}
-  m_PrefabAsset: {fileID: 0}

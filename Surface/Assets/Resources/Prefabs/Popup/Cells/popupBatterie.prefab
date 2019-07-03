@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &6088309995602194555
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1761277491834381302, guid: 14c971a2f642994458f5df976590352a,
+        type: 3}
+      propertyPath: m_Name
+      value: popupBatterie
+      objectReference: {fileID: 0}
+    - target: {fileID: 1761277491834381300, guid: 14c971a2f642994458f5df976590352a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1761277491834381300, guid: 14c971a2f642994458f5df976590352a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1761277491834381300, guid: 14c971a2f642994458f5df976590352a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1761277491834381300, guid: 14c971a2f642994458f5df976590352a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1761277491834381300, guid: 14c971a2f642994458f5df976590352a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1761277491834381300, guid: 14c971a2f642994458f5df976590352a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1761277491834381300, guid: 14c971a2f642994458f5df976590352a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1761277491834381300, guid: 14c971a2f642994458f5df976590352a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1761277491834381300, guid: 14c971a2f642994458f5df976590352a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1761277491834381300, guid: 14c971a2f642994458f5df976590352a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1761277491834381300, guid: 14c971a2f642994458f5df976590352a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1761277492745444349, guid: 14c971a2f642994458f5df976590352a,
+        type: 3}
+      propertyPath: m_Name
+      value: Title
+      objectReference: {fileID: 0}
+    - target: {fileID: 1761277491908228456, guid: 14c971a2f642994458f5df976590352a,
+        type: 3}
+      propertyPath: m_Text
+      value: "Vous r\xE9cuperer une \nbatterie."
+      objectReference: {fileID: 0}
+    - target: {fileID: 1761277491908228456, guid: 14c971a2f642994458f5df976590352a,
+        type: 3}
+      propertyPath: m_FontSize
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1761277492745444336, guid: 14c971a2f642994458f5df976590352a,
+        type: 3}
+      propertyPath: m_Text
+      value: Batterie
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 0}
+  m_SourcePrefab: {fileID: 100100000, guid: 14c971a2f642994458f5df976590352a, type: 3}
