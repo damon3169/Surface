@@ -128,7 +128,7 @@ public class PlayButtonsController : MonoBehaviour
         {
             yield return new WaitForSeconds(0.1f);
             System.Random rand = new System.Random(); // This seems to repeat itself and is slow!
-            int randomNum = rand.Next(1, map.Tiles.Count);
+            int randomNum = rand.Next(1, PlayerPrefs.GetInt("numberCase") + 1);
              randomNum = rand.Next(1, PlayerPrefs.GetInt("numberCase") + 1);
 
             isDiceMoving = true;
@@ -153,6 +153,6 @@ public class PlayButtonsController : MonoBehaviour
 
     public void PopUpCloseButton ()
     {
-        GameObject.Find("CloseButton").transform.parent.gameObject.SetActive(false);
+        GameObject.Find("popup").SetActive(false);
     }
 }
