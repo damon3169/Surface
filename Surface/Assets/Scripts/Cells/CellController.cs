@@ -41,7 +41,6 @@ public class CellController : MonoBehaviour
 	{
 		if (Input.GetButtonDown("Fire1") && isDoubleClick == false)
 		{
-			Debug.Log("Mouse clicked once");
 			isDoubleClick = true;
 		}
 	}
@@ -74,7 +73,6 @@ public class CellController : MonoBehaviour
 	{
 		SpriteRenderer cellSpriteRenderer = this.GetComponent<SpriteRenderer>();
 		cellState = newState;
-		Debug.Log(cellState);
 		switch (cellState)
 		{
 			case stateCell.reveal:

@@ -14,8 +14,6 @@ public class MapManager : MonoBehaviour
 
 	public bool isEditEnable = true;
 
-    public List<RandomEvent> randomEventList;
-
 	// Update is called once per frame
 
 	void Start()

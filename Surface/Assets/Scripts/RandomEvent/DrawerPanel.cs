@@ -11,46 +11,54 @@ public class DrawerPanel : MonoBehaviour
 	public GameObject Target;
 	private Vector3 TargetPosition;
 	float distanceToMove;
-	bool isDraweMoving;
+	bool isDraweMoving = false;
+	public Vector3 hidingPosition;
+	private bool isClosed = false;
 
 	public bool _isDraweMoving
 	{
 		get { return isDraweMoving; }
 		set
 		{
-			if (_isDraweMoving != value)
+			if (isDraweMoving != value)
 			{
 				isDraweMoving = value;
 				//drawer sortie
-				RandomEventEffect();
+				if (!isClosed && !isDraweMoving)
+				{
+					RandomEventEffect();
+				}
+				else if (isClosed && !isDraweMoving)
+				{
+					GameObject.Destroy(this.gameObject);
+				}
 			}
 		}
 	}
 
 
-	private void Awake()
+	protected virtual void Awake()
 	{
 		Target = GameObject.FindGameObjectWithTag("targetRandomEvent");
 		rt = this.GetComponent<RectTransform>();
-		DrawerOut();
+		DrawerOut(Target.GetComponent<RectTransform>().localPosition, false);
+		hidingPosition = rt.localPosition;
 	}
 
-	void DrawerOut()
+	public void DrawerOut(Vector3 TargetPosition, bool isClosed)
 	{
-		TargetPosition = Target.GetComponent<RectTransform>().localPosition;
+		this.TargetPosition = TargetPosition;
 		_isDraweMoving = true;
 		timeStartedLerping = Time.time;
 		_startPosition = rt.localPosition;
 		distanceToMove = Mathf.Abs(Vector3.Distance(_startPosition, TargetPosition));
-		Debug.Log(distanceToMove);
-		Debug.Log(TargetPosition);
+		this.isClosed = isClosed;
 	}
 
 	protected virtual void FixedUpdate()
 	{
 		if (_isDraweMoving)
 		{
-
 			float timeSinceStarted = Time.time - timeStartedLerping;
 			float percentageComplete = timeSinceStarted / timeTakenDuringLerp;
 
@@ -59,8 +67,6 @@ public class DrawerPanel : MonoBehaviour
 			if (percentageComplete >= 1.0f)
 			{
 				_isDraweMoving = false;
-				Debug.Log(rt.transform.position);
-
 			}
 		}
 	}
@@ -69,4 +75,5 @@ public class DrawerPanel : MonoBehaviour
 	{
 
 	}
+
 }

@@ -12,8 +12,7 @@ public class RandomEventController : MonoBehaviour
 		{
 			int rand = Random.Range(0, randomEventList.Count);
 			GameObject RandomEvent = Instantiate(randomEventList[rand]);
-			RandomEvent.transform.parent= this.transform;
-			RandomEvent.transform.localScale = new Vector3(1, 1, 1);
+			RandomEvent.transform.SetParent(this.transform,false);
 		}
 	}
 }
