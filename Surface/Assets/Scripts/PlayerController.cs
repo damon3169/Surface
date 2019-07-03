@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
 	public float timeTakenDuringLerp = 1f;
 	public CellController currentCell;
 	public CellController previousCell;
-	public int batterieCount= 0;
+	public int batterieCount = 0;
 
 	/// <summary>
 	/// How far the object should move when 'space' is pressed
@@ -41,10 +41,10 @@ public class PlayerController : MonoBehaviour
 				if (!isMovingToCell)
 				{
 					//si cell est reveler alors montrer popup
-					if(currentCell.cellState == CellController.stateCell.hide)
+					if (currentCell.cellState == CellController.stateCell.hide)
 					{
 						currentCell.OpenMyPopup();
-					}  
+					}
 					currentCell.CellStateChange(CellController.stateCell.reveal);
 					currentCell.EffectPlayerIn();
 				}
@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
 		timeStartedLerping = Time.time;
 		_startPosition = this.transform.position;
 		distanceToMove = Mathf.Abs(Vector3.Distance(_startPosition, cellTargetPosition));
-		if (currentCell!= null)
+		if (currentCell != null)
 		{
 			previousCell = currentCell;
 		}
