@@ -11,7 +11,9 @@ public class RandomEventController : MonoBehaviour
 		if (randomEventList.Count > 0)
 		{
 			int rand = Random.Range(0, randomEventList.Count);
-			Instantiate(randomEventList[rand]);
+			GameObject RandomEvent = Instantiate(randomEventList[rand]);
+			RandomEvent.transform.parent= this.transform;
+			RandomEvent.transform.localScale = new Vector3(1, 1, 1);
 		}
 	}
 }
