@@ -46,7 +46,7 @@ public class GameController : MonoBehaviour
     private int audioCounter = 0;
     private bool isThereAudioToPlay = true;
     public RunInBackground background;
-	RandomEventController RandomeEventController;
+	public RandomEventController RandomeEventController;
 	// Start is called before the first frame update
 	void Start()
     {
@@ -74,7 +74,7 @@ public class GameController : MonoBehaviour
             frameCount++;
             if (frameCount % 10 == 0)
             {
-                int rand = Random.Range(0, 100);
+                int rand = Random.Range(0, 2);
                 if (rand == 1)
                 {
                     if (timeBetweenEvents < Time.time - timeLastEvent)

@@ -21,7 +21,8 @@ public class DrawerPanel : MonoBehaviour
 			if (_isDraweMoving != value)
 			{
 				isDraweMoving = value;
-				// Le sous marin arrive sur la cells
+				//drawer sortie
+				RandomEventEffect();
 			}
 		}
 	}
@@ -29,7 +30,9 @@ public class DrawerPanel : MonoBehaviour
 
 	private void Awake()
 	{
+		Target = GameObject.FindGameObjectWithTag("targetRandomEvent");
 		rt = this.GetComponent<RectTransform>();
+		DrawerOut();
 	}
 
 	void DrawerOut()
@@ -43,7 +46,7 @@ public class DrawerPanel : MonoBehaviour
 		Debug.Log(TargetPosition);
 	}
 
-	void FixedUpdate()
+	protected virtual void FixedUpdate()
 	{
 		if (_isDraweMoving)
 		{
@@ -60,5 +63,10 @@ public class DrawerPanel : MonoBehaviour
 
 			}
 		}
+	}
+
+	protected virtual void RandomEventEffect()
+	{
+
 	}
 }
