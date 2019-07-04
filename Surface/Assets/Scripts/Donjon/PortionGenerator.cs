@@ -15,7 +15,7 @@ public class PortionGenerator : MonoBehaviour
         }
     }
 
-    void Generate(int height)
+    public int[][] Generate(int height)
     {
         int randDifficulty = 0;
         int[] newLine = new int[1];
@@ -43,13 +43,14 @@ public class PortionGenerator : MonoBehaviour
             if (newLine[0] == -1)
             {
                 Debug.LogError("Difficultés non valide");
-                return;
+                return null;
             }
             portion.Add(newLine);
         }
         difficultyValue /= height - 1;
         Debug.Log("Total Difficuty: " + difficultyValue);
         //DebugDonjon();
+        return portion.ToArray();
 
     }
 
@@ -60,6 +61,5 @@ public class PortionGenerator : MonoBehaviour
             Debug.Log(linesGenerator.DebugLine(portion[i]));
         }
     }
-
 
 }
