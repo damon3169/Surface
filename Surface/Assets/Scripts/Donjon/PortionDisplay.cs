@@ -105,7 +105,7 @@ public class PortionDisplay : MonoBehaviour
                     instancedCellsArray[i][j].GetComponent<CellController>().GetNearCellList().Add(instancedCellsArray[i+1][j].GetComponent<CellController>());//au dessus a gauche
                     instancedCellsArray[i][j].GetComponent<CellController>().GetNearCellList().Add(instancedCellsArray[i + 1][j+1].GetComponent<CellController>());//au dessus a droite
                 }
-                if (i < instancedCellsArray.Length - 1)
+                if (i < instancedCellsArray.Length - 1 && i > 0)
                 {
                     instancedCellsArray[i][j].GetComponent<CellController>().GetNearCellList().Add(instancedCellsArray[i + 1][j].GetComponent<CellController>());//au dessus
                 }
@@ -119,7 +119,7 @@ public class PortionDisplay : MonoBehaviour
                     }
 
                 }
-                if (i > 0 && j == instancedCellsArray[i].Length - 1)
+                else if (i > 0 && j == instancedCellsArray[i].Length - 1)
                 {
                     Debug.Log("i: " + i);
                     Debug.Log("j: " + j);
@@ -137,6 +137,20 @@ public class PortionDisplay : MonoBehaviour
                     {
                         instancedCellsArray[i][j].GetComponent<CellController>().GetNearCellList().Add(instancedCellsArray[i + 1][j - 1].GetComponent<CellController>());//au dessus a gauche
                     }
+                }
+                else if(i > 0 && j != 0 && j != instancedCellsArray[i].Length - 1)
+                {
+                    if (i == 2)
+                    {
+                        instancedCellsArray[i][j].GetComponent<CellController>().GetNearCellList().Add(instancedCellsArray[i - 1][j - 1].GetComponent<CellController>());//en dessous a gauche
+                        instancedCellsArray[i][j].GetComponent<CellController>().GetNearCellList().Add(instancedCellsArray[i + 1][j + 1].GetComponent<CellController>());//au dessus a droite
+
+                    }
+                    instancedCellsArray[i][j].GetComponent<CellController>().GetNearCellList().Add(instancedCellsArray[i - 1][j].GetComponent<CellController>());//en dessous (a droite)
+                    //instancedCellsArray[i][j].GetComponent<CellController>().GetNearCellList().Add(instancedCellsArray[i + 1][j].GetComponent<CellController>());//au dessus (a gauche)
+                    instancedCellsArray[i][j].GetComponent<CellController>().GetNearCellList().Add(instancedCellsArray[i][j-1].GetComponent<CellController>());//a gauche
+                    instancedCellsArray[i][j].GetComponent<CellController>().GetNearCellList().Add(instancedCellsArray[i][j + 1].GetComponent<CellController>());//a droite
+
                 }
             }
         }

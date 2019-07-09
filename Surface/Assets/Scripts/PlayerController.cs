@@ -27,9 +27,12 @@ public class PlayerController : MonoBehaviour
 
 	//The Time.time value when we started the interpolation
 	private float timeStartedLerping;
+    private void Start()
+    {
+        nearCellList = currentCell.GetNearCellList();
+    }
 
-
-	public bool _isMovingToCell
+    public bool _isMovingToCell
 	{
 		get { return isMovingToCell; }
 		set
@@ -64,7 +67,8 @@ public class PlayerController : MonoBehaviour
 			previousCell = currentCell;
 		}
 		currentCell = newCell.GetComponent<CellController>();
-	}
+        nearCellList = newCell.GetComponent<CellController>().GetNearCellList();
+    }
 
 
 	public void addBattery()
