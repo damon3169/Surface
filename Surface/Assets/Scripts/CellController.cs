@@ -17,6 +17,7 @@ public class CellController : MonoBehaviour
 	public GameObject myPopup;
 	public float timeHold;
 	public float timeHoldRelease = 0.8f;
+    public List<CellController> nearCellList = new List<CellController>();
 
 	protected virtual void Start()
 	{
@@ -104,4 +105,9 @@ public class CellController : MonoBehaviour
 	{
 
 	}
+
+    public List<CellController> GetNearCellList()
+    {
+        return nearCellList;
+    }
 }

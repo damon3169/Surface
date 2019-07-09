@@ -1024,6 +1024,7 @@ MonoBehaviour:
   - {fileID: 4812562001097183264, guid: d84a5e65e0bfeeb4da96511f8761379c, type: 3}
   - {fileID: 1717357534639331118, guid: 9df0cb9848129fd4182c6512ae1733b0, type: 3}
   submarine: {fileID: 241629104}
+  casePosition: 1
 --- !u!1 &480817004
 GameObject:
   m_ObjectHideFlags: 0
@@ -2242,7 +2243,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1897463740}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 512e831859f1a8e4b936dfdbee035312, type: 3}
