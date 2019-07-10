@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class ButtonController : MonoBehaviour
 {
-	float timerForDoubleClick = 0.0f;
-	float delay = 0.3f;
 	bool isDoubleClick = false;
 
 	// Start is called before the first frame update
@@ -32,7 +30,6 @@ public class ButtonController : MonoBehaviour
 	{
 		if (Input.GetButtonDown("Fire1") && isDoubleClick == false)
 		{
-			Debug.Log("ok");
 			isDoubleClick = true;
 		}
 

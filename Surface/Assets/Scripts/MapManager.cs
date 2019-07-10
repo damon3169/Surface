@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using System.Linq;
+
 
 [ExecuteInEditMode]
 public class MapManager : MonoBehaviour
 {
+	public int minPlayer = 2;
+	public int maxPlayer = 2;
 	public bool isEnable = false;
 
 	public GameObject LastSelectedGameObject;
@@ -14,27 +18,23 @@ public class MapManager : MonoBehaviour
 
 	public bool isEditEnable = true;
 
-    public List<RandomEvent> randomEventList;
-
 	// Update is called once per frame
 
 	void Start()
-	{
-
-		/*foreach (GameObject tile in Tiles)
+	{		/*foreach (GameObject tile in Tiles)
 		{
 			tile.GetComponent<TileController>().GetHits();
 		}*/
-		
+
 	}
 #if (UNITY_EDITOR)
-    public void CreateTile()
+	public void CreateTile()
 	{
 		isEditEnable = false;
 		GameObject LastTile = Tiles[0];
 		foreach (GameObject tile in Tiles)
 		{
-			if (tile.GetComponent<TileController>().positionInMap.y> LastTile.GetComponent<TileController>().positionInMap.y)
+			if (tile.GetComponent<TileController>().positionInMap.y > LastTile.GetComponent<TileController>().positionInMap.y)
 			{
 				LastTile = tile;
 			}
@@ -60,6 +60,10 @@ public class MapManager : MonoBehaviour
 			LastSelectedGameObject = Selection.activeGameObject;
 		}
 	}
+
+
 #endif
 
+
+	
 }

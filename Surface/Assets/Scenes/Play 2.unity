@@ -166,15 +166,11 @@ MonoBehaviour:
   isInPause: 1
   isDiceMoving: 0
   alarm: {fileID: 8300000, guid: 60ad821a910b99f4d8c293e7b5471f5e, type: 3}
-  popupText: {fileID: 0}
-  timerText: {fileID: 388030444}
   timerEventBegin: 0
   popup: {fileID: 0}
   monster: {fileID: 8300000, guid: a4862cbb507e6884baac74e1c2b50259, type: 3}
   isEventOn: 0
-  radioClip: {fileID: 8300000, guid: 6d7be6542b55d1d40a29f1d69a7705af, type: 3}
   timeLastEvent: 0
-  audioClipsList: []
   background: {fileID: 0}
   RandomeEventController: {fileID: 2018493207}
 --- !u!4 &15460885
@@ -2329,7 +2325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   randomEventList:
-  - {fileID: 6977198374960017725, guid: c95c03772cae0b64e962c90e0b954310, type: 3}
+  - {fileID: 8782302746098054766, guid: ae9a62316eaafb74ea871e5458697d93, type: 3}
 --- !u!1001 &1376011240931380283
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2490,11 +2486,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PopupRandomEvent
       objectReference: {fileID: 0}
-    - target: {fileID: 7476075892876346367, guid: e8c7879bb757c1a48bfa4da8dfae664c,
-        type: 3}
-      propertyPath: m_TagString
-      value: targetRandomEvent
-      objectReference: {fileID: 0}
     - target: {fileID: 7476075893019841563, guid: e8c7879bb757c1a48bfa4da8dfae664c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2599,6 +2590,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7476075892876346367, guid: e8c7879bb757c1a48bfa4da8dfae664c,
+        type: 3}
+      propertyPath: m_TagString
+      value: targetRandomEvent
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8c7879bb757c1a48bfa4da8dfae664c, type: 3}
