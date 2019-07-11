@@ -121,8 +121,8 @@ public class PortionDisplay : MonoBehaviour
                 }
                 else if (i > 0 && j == instancedCellsArray[i].Length - 1)
                 {
-                    Debug.Log("i: " + i);
-                    Debug.Log("j: " + j);
+                    //Debug.Log("i: " + i);
+                    //Debug.Log("j: " + j);
                     instancedCellsArray[i][j].GetComponent<CellController>().GetNearCellList().Add(instancedCellsArray[i][j-1].GetComponent<CellController>()); //a gauche
                     if(instancedCellsArray[i].Length != instancedCellsArray[i - 1].Length) //en dessous
                     {
@@ -130,7 +130,7 @@ public class PortionDisplay : MonoBehaviour
                     }
                     else
                     {
-                        Debug.Log("oéoéoé");
+                        //Debug.Log("in else");
                         instancedCellsArray[i][j].GetComponent<CellController>().GetNearCellList().Add(instancedCellsArray[i - 1][j].GetComponent<CellController>());
                     }
                     if (i <= 2)
@@ -147,7 +147,6 @@ public class PortionDisplay : MonoBehaviour
 
                     }
                     instancedCellsArray[i][j].GetComponent<CellController>().GetNearCellList().Add(instancedCellsArray[i - 1][j].GetComponent<CellController>());//en dessous (a droite)
-                    //instancedCellsArray[i][j].GetComponent<CellController>().GetNearCellList().Add(instancedCellsArray[i + 1][j].GetComponent<CellController>());//au dessus (a gauche)
                     instancedCellsArray[i][j].GetComponent<CellController>().GetNearCellList().Add(instancedCellsArray[i][j-1].GetComponent<CellController>());//a gauche
                     instancedCellsArray[i][j].GetComponent<CellController>().GetNearCellList().Add(instancedCellsArray[i][j + 1].GetComponent<CellController>());//a droite
 

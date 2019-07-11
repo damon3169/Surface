@@ -42,7 +42,7 @@ public class CellController : MonoBehaviour
 	{
 		if (Input.GetButtonDown("Fire1") && isDoubleClick == false)
 		{
-			Debug.Log("Mouse clicked once");
+			//Debug.Log("Mouse clicked once");
 			isDoubleClick = true;
 		}
 	}

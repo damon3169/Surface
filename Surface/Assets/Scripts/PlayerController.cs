@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
 	public CellController currentCell;
 	public CellController previousCell;
 	public int batterieCount = 0;
+    [SerializeField] private DepthCursorBehaviour cursor;
 
 	/// <summary>
 	/// How far the object should move when 'space' is pressed
@@ -29,6 +30,7 @@ public class PlayerController : MonoBehaviour
 	private float timeStartedLerping;
     private void Start()
     {
+        transform.position = currentCell.transform.position;
         nearCellList = currentCell.GetNearCellList();
     }
 
@@ -68,6 +70,7 @@ public class PlayerController : MonoBehaviour
 		}
 		currentCell = newCell.GetComponent<CellController>();
         nearCellList = newCell.GetComponent<CellController>().GetNearCellList();
+        cursor.ChangeCursorPos();
     }
 
 
