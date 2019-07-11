@@ -6,24 +6,6 @@ public class ButtonController : MonoBehaviour
 {
 	bool isDoubleClick = false;
 
-	// Start is called before the first frame update
-	void Start()
-	{
-
-	}
-
-	// Update is called once per frame
-	void Update()
-	{
-		/*if (Input.touchCount > 0)
-		{
-
-			if (Input.GetTouch(0).phase == TouchPhase.Ended)
-			{
-				GameObject.Destroy(this.transform.parent.gameObject);
-			}
-		}*/
-	}
 
 
 	void OnMouseOver()
@@ -35,7 +17,7 @@ public class ButtonController : MonoBehaviour
 
 	}
 
-	void OnMouseDown()
+	protected virtual void OnMouseDown()
 	{
 		GameObject.Destroy(this.transform.parent.gameObject);
 	}

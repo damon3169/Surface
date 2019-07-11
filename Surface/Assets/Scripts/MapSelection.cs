@@ -9,10 +9,9 @@ public class MapSelection : MonoBehaviour
 	List<GameObject> SelectedMaps;
 	int numPlayerSelected = 2;
 
-	Vector2 StartPos;
+	public Vector2 StartPos;
 	int SwipeID = -1;
 	float minMovement = 20.0f;
-	Rigidbody2D rigidbody2d;
 	bool goingRight;
 	float scaleX;
 	public float floatHeight;     // Desired floating height.
@@ -27,36 +26,63 @@ public class MapSelection : MonoBehaviour
 	private float mapMaxPositionX;
 	public float widthCollider;
 	private int mapFocused = 0;
+	private Vector3 buttonMapTargetPosition;
+	public List<GameObject> mapButtonList;
+	private Vector3 buttonMapStartPosition;
+	public GameObject containersMapButton;
+	public float ratio;
+	public GameObject mapContainerPrefab;
+	public List<GameObject> mapOriginalSelected;
+	public GameObject mapButtonPrefab;
+	private float timeMouseDown;
+	public bool isPopupOpen = false;
+	public Event m_Event;
 
 	void selectMaps()
 	{
+		widthCollider = mapContainerPrefab.GetComponent<BoxCollider2D>().size.x;
 		foreach (GameObject map in Maps)
 		{
-			if (numPlayerSelected >= map.transform.GetChild(0).GetComponent<MapManager>().minPlayer && numPlayerSelected <= map.transform.GetChild(0).GetComponent<MapManager>().maxPlayer)
+			if (PlayerPrefs.GetInt("numberPlayer") >= map.transform.GetComponent<MapManager>().minPlayer && PlayerPrefs.GetInt("numberPlayer") <= map.transform.GetComponent<MapManager>().maxPlayer)
 			{
-				SelectedMaps.Add(map);
+				mapOriginalSelected.Add(map);
 			}
 		}
+		int i = 0;
+		foreach (GameObject map in mapOriginalSelected)
+		{
+			GameObject parent = Instantiate(mapContainerPrefab, this.transform);
+
+			parent.transform.position = new Vector3(this.transform.position.x + widthCollider * i, this.transform.position.y, this.transform.position.z);
+			Instantiate(map, parent.transform);
+			SelectedMaps.Add(parent);
+			parent = Instantiate(mapButtonPrefab, containersMapButton.transform);
+			parent.transform.position = new Vector3(containersMapButton.transform.position.x + 1.5f * i, containersMapButton.transform.position.y, containersMapButton.transform.position.z);
+			parent.GetComponent<MapButtonController>().MapIndex = i;
+			mapButtonList.Add(parent);
+			i++;
+		}
 	}
-	private void Awake()
+
+	void createSelectionMapButton()
 	{
-		widthCollider = this.transform.GetChild(0).GetComponent<BoxCollider2D>().size.x;
 
 	}
 
 	private void Start()
 	{
 		SelectedMaps = new List<GameObject>();
-		rigidbody2d = this.GetComponent<Rigidbody2D>();
-		for (int i = 0; i < transform.childCount; i++)
+		selectMaps();
+		for (int i = 0; i < SelectedMaps.Count; i++)
 		{
 			scaleX += widthCollider;
 		}
-		selectMaps();
+
 		mapMaxPositionX = this.transform.position.x - widthCollider;
 		mapMinPositionX = this.transform.position.x;
 		SortList();
-
+		ratio = (SelectedMaps[0].transform.position.x - SelectedMaps[1].transform.position.x) / (mapButtonList[0].transform.position.x - mapButtonList[1].transform.position.x);
+		ChangeFocusedMap(0);
 	}
 
 	public void lerpMap()
@@ -64,7 +90,7 @@ public class MapSelection : MonoBehaviour
 		_startPosition = this.transform.position;
 		timeStartedLerping = Time.time;
 		isLerping = true;
-
+		buttonMapStartPosition = containersMapButton.transform.position;
 	}
 
 	public void lerpMapStop()
@@ -74,19 +100,6 @@ public class MapSelection : MonoBehaviour
 
 	void FixedUpdate()
 	{
-
-		if (this.transform.position.x > mapMinPositionX && mapFocused > 0)
-		{
-
-			ChangeFocusedMap(mapFocused - 1);
-
-		}
-
-		else if (this.transform.position.x < mapMaxPositionX && mapFocused < SelectedMaps.Count - 1)
-		{
-			ChangeFocusedMap(mapFocused + 1);
-		}
-
 		foreach (var T in Input.touches)
 		{
 			var P = T.position;
@@ -101,9 +114,20 @@ public class MapSelection : MonoBehaviour
 			var delta = P - StartPos;
 			if (T.phase == TouchPhase.Moved && delta.magnitude > minMovement)
 			{
+				if (this.transform.position.x > mapMinPositionX && mapFocused > 0)
+				{
+
+					ChangeFocusedMap(mapFocused - 1);
+				}
+
+				else if (this.transform.position.x < mapMaxPositionX && mapFocused < SelectedMaps.Count - 1)
+				{
+					ChangeFocusedMap(mapFocused + 1);
+				}
 				SwipeID = -1;
 				if (Mathf.Abs(delta.x) > Mathf.Abs(delta.y))
 				{
+					lerpMapStop();
 					if (delta.x > 0)
 					{
 
@@ -157,82 +181,105 @@ public class MapSelection : MonoBehaviour
 			float percentageComplete = timeSinceStarted / timeTakenDuringLerp;
 
 			transform.position = Vector3.Lerp(_startPosition, targetPostion, percentageComplete);
+			containersMapButton.transform.position = Vector3.Lerp(buttonMapStartPosition, buttonMapTargetPosition, percentageComplete);
 			if (percentageComplete >= 1.0f)
 			{
 				isLerping = false;
 			}
+
 		}
 	}
 
-	void ChangeFocusedMap(int newMapIndex)
+	public void ChangeFocusedMap(int newMapIndex)
 	{
 		mapFocused = newMapIndex;
 		mapMinPositionX = -widthCollider * mapFocused;
-
 		targetPostion = new Vector3(mapMinPositionX, 0, 0);
 		mapMaxPositionX = mapMinPositionX - widthCollider;
+		buttonMapTargetPosition = new Vector3(-mapButtonList[mapFocused].transform.localPosition.x, containersMapButton.transform.position.y, containersMapButton.transform.position.z);
+		Debug.Log(buttonMapTargetPosition);
 	}
 
 	void OnGUI()
 	{
-		Event m_Event = Event.current;
-
-		if (m_Event.type == EventType.MouseDown)
+		if (!isPopupOpen)
 		{
-			StartPos = m_Event.mousePosition;
-		}
+			m_Event = Event.current;
 
-		if (m_Event.type == EventType.MouseDrag)
-		{
-			var delta = m_Event.mousePosition - StartPos;
-			if (delta.magnitude > minMovement)
+			if (m_Event.type == EventType.MouseDown)
 			{
-				if (Mathf.Abs(delta.x) > Mathf.Abs(delta.y))
+				StartPos = m_Event.mousePosition;
+				timeMouseDown = Time.time;
+			}
+
+			if (m_Event.type == EventType.MouseDrag)
+			{
+				var delta = m_Event.mousePosition - StartPos;
+				if (delta.magnitude > minMovement)
 				{
-					if (delta.x > 0)
+					if (this.transform.position.x > mapMinPositionX && mapFocused > 0)
 					{
-
-						if (goingRight == false)
-						{
-							lerpMapStop();
-							StartPos = m_Event.mousePosition;
-							delta = m_Event.mousePosition - StartPos;
-							goingRight = true;
-						}
-						if (this.transform.position.x < 0)
-						{
-							transform.position += new Vector3(0.2f, 0, 0);
-						}
-
+						ChangeFocusedMap(mapFocused - 1);
 					}
-					else
-					{
-						if (goingRight == true)
-						{
-							lerpMapStop();
-							StartPos = m_Event.mousePosition;
-							delta = m_Event.mousePosition - StartPos;
-							goingRight = false;
-						}
 
-						if (this.transform.position.x > -(scaleX / 2 + widthCollider / 2))
+					else if (this.transform.position.x < mapMaxPositionX && mapFocused < SelectedMaps.Count - 1)
+					{
+						ChangeFocusedMap(mapFocused + 1);
+					}
+					if (Mathf.Abs(delta.x) > Mathf.Abs(delta.y))
+					{
+						lerpMapStop();
+						if (delta.x > 0)
 						{
-							transform.position += new Vector3(-0.2f, 0, 0);
+
+							if (goingRight == false)
+							{
+								lerpMapStop();
+								StartPos = m_Event.mousePosition;
+								delta = m_Event.mousePosition - StartPos;
+								goingRight = true;
+							}
+							if (this.transform.position.x < 0)
+							{
+								transform.position += new Vector3(0.2f, 0, 0);
+								containersMapButton.transform.position += new Vector3(0.2f / ratio, 0, 0);
+							}
+
+						}
+						else
+						{
+							if (goingRight == true)
+							{
+								lerpMapStop();
+								StartPos = m_Event.mousePosition;
+								delta = m_Event.mousePosition - StartPos;
+								goingRight = false;
+							}
+
+							if (this.transform.position.x > -(scaleX / 2 + widthCollider / 2))
+							{
+								transform.position += new Vector3(-0.2f, 0, 0);
+								containersMapButton.transform.position += new Vector3(-0.2f / ratio, 0, 0);
+							}
 						}
 					}
 				}
 			}
-		}
 
-		if (m_Event.type == EventType.MouseUp)
-		{
-			lerpMap();
+			if (m_Event.type == EventType.MouseUp)
+			{
+				if (Time.time - timeMouseDown < 0.2f && StartPos == m_Event.mousePosition)
+				{
+
+				}
+				lerpMap();
+			}
 		}
 	}
 
 	public void SortList()
 	{
-		foreach (GameObject map in Maps)
+		foreach (GameObject map in SelectedMaps)
 		{
 			MapManager MapManager = map.transform.GetChild(0).GetComponent<MapManager>();
 			List<GameObject> Tiles = MapManager.Tiles;
@@ -255,8 +302,8 @@ public class MapSelection : MonoBehaviour
 			}
 
 
-			float widthTotalx = (Tiles[0].transform.position.x - Tiles[0].transform.localScale.x ) - (Tiles[Tiles.Count - 1].transform.position.x + Tiles[0].transform.localScale.x );
-			float widthTotaly = (Tiles[Tiles.Count - 1].transform.position.y + Tiles[0].transform.localScale.y) -(Tiles[0].transform.position.y - Tiles[0].transform.localScale.y ) ;
+			float widthTotalx = (Tiles[0].transform.position.x - Tiles[0].transform.localScale.x) - (Tiles[Tiles.Count - 1].transform.position.x + Tiles[0].transform.localScale.x);
+			float widthTotaly = (Tiles[Tiles.Count - 1].transform.position.y + Tiles[0].transform.localScale.y) - (Tiles[0].transform.position.y - Tiles[0].transform.localScale.y);
 			float newSize;
 			if (widthTotalx > widthTotaly)
 			{
