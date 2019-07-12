@@ -17,4 +17,16 @@ public class MapButtonController : MonoBehaviour
 		mapSelection.ChangeFocusedMap(MapIndex);
 		mapSelection.lerpMap();
 	}
+
+	private void Update()
+	{
+		if (mapSelection.mapFocused == MapIndex)
+		{
+			transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.green;
+		}
+		else
+		{
+			transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.red;
+		}
+	}
 }

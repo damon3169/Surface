@@ -25,7 +25,7 @@ public class MapSelection : MonoBehaviour
 	private float mapMinPositionX;
 	private float mapMaxPositionX;
 	public float widthCollider;
-	private int mapFocused = 0;
+	public int mapFocused = 0;
 	private Vector3 buttonMapTargetPosition;
 	public List<GameObject> mapButtonList;
 	private Vector3 buttonMapStartPosition;
@@ -37,6 +37,7 @@ public class MapSelection : MonoBehaviour
 	private float timeMouseDown;
 	public bool isPopupOpen = false;
 	public Event m_Event;
+	public float firstPositionMiniMap = 1.70f;
 
 	void selectMaps()
 	{
@@ -57,7 +58,8 @@ public class MapSelection : MonoBehaviour
 			Instantiate(map, parent.transform);
 			SelectedMaps.Add(parent);
 			parent = Instantiate(mapButtonPrefab, containersMapButton.transform);
-			parent.transform.position = new Vector3(containersMapButton.transform.position.x + 1.5f * i, containersMapButton.transform.position.y, containersMapButton.transform.position.z);
+			ratio = (firstPositionMiniMap * 2) / (mapOriginalSelected.Count-1);
+			parent.transform.position = new Vector3(-firstPositionMiniMap + ratio * i, containersMapButton.transform.position.y, containersMapButton.transform.position.z);
 			parent.GetComponent<MapButtonController>().MapIndex = i;
 			mapButtonList.Add(parent);
 			i++;
@@ -81,7 +83,6 @@ public class MapSelection : MonoBehaviour
 		mapMaxPositionX = this.transform.position.x - widthCollider;
 		mapMinPositionX = this.transform.position.x;
 		SortList();
-		ratio = (SelectedMaps[0].transform.position.x - SelectedMaps[1].transform.position.x) / (mapButtonList[0].transform.position.x - mapButtonList[1].transform.position.x);
 		ChangeFocusedMap(0);
 	}
 
@@ -90,7 +91,6 @@ public class MapSelection : MonoBehaviour
 		_startPosition = this.transform.position;
 		timeStartedLerping = Time.time;
 		isLerping = true;
-		buttonMapStartPosition = containersMapButton.transform.position;
 	}
 
 	public void lerpMapStop()
@@ -140,6 +140,7 @@ public class MapSelection : MonoBehaviour
 						}
 						if (this.transform.position.x < 0)
 						{
+
 							transform.position += new Vector3(0.7f, 0, 0);
 						}
 
@@ -181,7 +182,6 @@ public class MapSelection : MonoBehaviour
 			float percentageComplete = timeSinceStarted / timeTakenDuringLerp;
 
 			transform.position = Vector3.Lerp(_startPosition, targetPostion, percentageComplete);
-			containersMapButton.transform.position = Vector3.Lerp(buttonMapStartPosition, buttonMapTargetPosition, percentageComplete);
 			if (percentageComplete >= 1.0f)
 			{
 				isLerping = false;
@@ -193,11 +193,9 @@ public class MapSelection : MonoBehaviour
 	public void ChangeFocusedMap(int newMapIndex)
 	{
 		mapFocused = newMapIndex;
-		mapMinPositionX = -widthCollider * mapFocused;
-		targetPostion = new Vector3(mapMinPositionX, 0, 0);
-		mapMaxPositionX = mapMinPositionX - widthCollider;
-		buttonMapTargetPosition = new Vector3(-mapButtonList[mapFocused].transform.localPosition.x, containersMapButton.transform.position.y, containersMapButton.transform.position.z);
-		Debug.Log(buttonMapTargetPosition);
+		mapMinPositionX = -widthCollider * mapFocused + widthCollider/2;
+		targetPostion = new Vector3(-widthCollider * mapFocused, 0, 0);
+		mapMaxPositionX = -widthCollider * mapFocused - widthCollider/2;
 	}
 
 	void OnGUI()
@@ -242,7 +240,6 @@ public class MapSelection : MonoBehaviour
 							if (this.transform.position.x < 0)
 							{
 								transform.position += new Vector3(0.2f, 0, 0);
-								containersMapButton.transform.position += new Vector3(0.2f / ratio, 0, 0);
 							}
 
 						}
@@ -255,11 +252,10 @@ public class MapSelection : MonoBehaviour
 								delta = m_Event.mousePosition - StartPos;
 								goingRight = false;
 							}
-
-							if (this.transform.position.x > -(scaleX / 2 + widthCollider / 2))
+							if (this.transform.position.x > -(SelectedMaps[SelectedMaps.Count - 1].transform.localPosition.x + widthCollider / 2))
 							{
+								Debug.Log(this.transform.position.x > -(SelectedMaps[SelectedMaps.Count - 1].transform.localPosition.x + widthCollider / 2));
 								transform.position += new Vector3(-0.2f, 0, 0);
-								containersMapButton.transform.position += new Vector3(-0.2f / ratio, 0, 0);
 							}
 						}
 					}

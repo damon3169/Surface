@@ -65,4 +65,5 @@ public class LevelSelection : MonoBehaviour
 		PlayerPrefs.SetInt("numberPlayer", numPlayer);
 		SceneManager.LoadScene("MapSelection");
 	}
+
 }

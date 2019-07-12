@@ -510,6 +510,10 @@ MonoBehaviour:
   - {fileID: 6175002752300231440, guid: 6f64a2688e721be44911057d9140d8f6, type: 3}
   - {fileID: 6175002752300231440, guid: 6f64a2688e721be44911057d9140d8f6, type: 3}
   - {fileID: 6175002752300231440, guid: 7fb212c2ad1f16b45aa1829a89de548a, type: 3}
+  - {fileID: 6175002752300231440, guid: 7fb212c2ad1f16b45aa1829a89de548a, type: 3}
+  - {fileID: 6175002752300231440, guid: 7fb212c2ad1f16b45aa1829a89de548a, type: 3}
+  - {fileID: 6175002752300231440, guid: 7fb212c2ad1f16b45aa1829a89de548a, type: 3}
+  StartPos: {x: 0, y: 0}
   floatHeight: 0
   liftForce: 0
   damping: 0
@@ -517,6 +521,7 @@ MonoBehaviour:
   timeTakenDuringLerp: 1
   targetPostion: {x: 0, y: 0, z: 0}
   widthCollider: 0
+  mapFocused: 0
   mapButtonList: []
   containersMapButton: {fileID: 1382724888}
   ratio: 0
@@ -526,6 +531,7 @@ MonoBehaviour:
   mapButtonPrefab: {fileID: 1894686879722730258, guid: abe6cf9eeb5ef9642bf9c5a74b6df535,
     type: 3}
   isPopupOpen: 0
+  firstPositionMiniMap: 1.7
 --- !u!1 &2118092888
 GameObject:
   m_ObjectHideFlags: 0
