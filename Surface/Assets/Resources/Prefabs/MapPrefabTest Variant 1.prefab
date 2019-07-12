@@ -469,7 +469,7 @@ PrefabInstance:
     - target: {fileID: 8548887988015675259, guid: abd9d7a6ad4b2954fa5421eb7102ea5e,
         type: 3}
       propertyPath: m_Name
-      value: MapPrefabTest Variant
+      value: MapPrefabTest Variant 1
       objectReference: {fileID: 0}
     - target: {fileID: 8548887988015675205, guid: abd9d7a6ad4b2954fa5421eb7102ea5e,
         type: 3}
@@ -544,7 +544,7 @@ PrefabInstance:
     - target: {fileID: 8548887988015675260, guid: abd9d7a6ad4b2954fa5421eb7102ea5e,
         type: 3}
       propertyPath: maxPlayer
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8548887988015675260, guid: abd9d7a6ad4b2954fa5421eb7102ea5e,
         type: 3}

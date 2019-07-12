@@ -18,6 +18,8 @@ public class MapManager : MonoBehaviour
 
 	public bool isEditEnable = true;
 
+	public GameObject myPopup;
+
 	// Update is called once per frame
 
 	void Start()
@@ -65,5 +67,12 @@ public class MapManager : MonoBehaviour
 #endif
 
 
-	
+	public virtual void openPopup()
+	{
+		if (GameObject.FindGameObjectWithTag("popup"))
+		{
+			Destroy(GameObject.FindGameObjectWithTag("popup"));
+		}
+		Instantiate(myPopup,this.transform);
+	}
 }

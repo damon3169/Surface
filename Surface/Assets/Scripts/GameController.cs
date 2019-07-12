@@ -24,6 +24,7 @@ public class GameController : MonoBehaviour
     public AudioClip monster;
     private int frameCount = 0;
     public bool isEventOn = false;
+	//changer pour changer timer random event
     private float timeBetweenEvents = 0f;
     public float timeLastEvent = 0f;
     public RunInBackground background;
