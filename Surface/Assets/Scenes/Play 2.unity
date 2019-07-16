@@ -173,6 +173,10 @@ MonoBehaviour:
   timeLastEvent: 0
   background: {fileID: 0}
   RandomeEventController: {fileID: 2018493207}
+  pausePopupPrefab: {fileID: 4749146019481917142, guid: db5a0ebc997a1ba46995c0217c79a7d4,
+    type: 3}
+  TimerPause: 60
+  textPausePopup: {fileID: 0}
 --- !u!4 &15460885
 Transform:
   m_ObjectHideFlags: 0
