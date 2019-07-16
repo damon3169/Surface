@@ -11,14 +11,15 @@ public class PortionDisplay : MonoBehaviour
     private PortionGenerator portionGenerator = new PortionGenerator();
     private List<GameObject[]> instancedCells = new List<GameObject[]>();
 
-    private void Awake()
+    public void Display(int[][] portionToDisplay)
     {
         for (int i = 0; i < cellArray.Length; i++)
         {
             if(cellArray[i].GetComponent<CellController>()!= null) cellArray[i].GetComponent<CellController>().submarine = submarine;
         }
 
-        int[][] portionNow = portionGenerator.Generate(portionHeight); //A remplacer par un GetPortion() quand le systeme d'arbre sera code
+        //int[][] portionNow = portionGenerator.Generate(portionHeight); //A remplacer par un GetPortion() quand le systeme d'arbre sera code
+        int[][] portionNow = portionToDisplay;
 
 
 

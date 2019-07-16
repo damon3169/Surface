@@ -15,12 +15,12 @@ public class DepthCursorBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Depth Slider Height: " + depthSliderSprite.rectTransform.rect.height);
+        //Debug.Log("Depth Slider Height: " + depthSliderSprite.rectTransform.rect.height);
         depthHeight = (int)(depthSliderSprite.rectTransform.rect.height - marginTop - marginBottom);
-        Debug.Log("Depth Height: " + depthHeight);
-        offsetBetweenValues = depthHeight / 20f; //Profondeur max de 20 000 / 4 portions de 5 000 de profondeur / 1 unit = 1000 de profondeur
-        Debug.Log("Offset: " + offsetBetweenValues);
-        Debug.Log("Cursor Position: " + -(offsetBetweenValues * 10));
+        //Debug.Log("Depth Height: " + depthHeight);
+        offsetBetweenValues = depthHeight / 24f; //Profondeur max de 24 000 / 4 portions de 6 000 de profondeur / 1 unit = 1000 de profondeur / Remplacer par la height totale
+        //Debug.Log("Offset: " + offsetBetweenValues);
+        //Debug.Log("Cursor Position: " + -(offsetBetweenValues * 10));
 
         cursor.rectTransform.position = new Vector3(cursor.rectTransform.position.x, -(offsetBetweenValues * 10) / 71.11111f, cursor.rectTransform.position.z); //Je sais pas pourquoi 71.11111
     }

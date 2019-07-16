@@ -419,6 +419,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Submarine
       objectReference: {fileID: 0}
+    - target: {fileID: 4684199910173812898, guid: b39975fcd7dfb6a4b904955f1b1a064f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4684199910173812899, guid: b39975fcd7dfb6a4b904955f1b1a064f,
         type: 3}
       propertyPath: nearCellList.Array.size
@@ -938,7 +943,6 @@ GameObject:
   - component: {fileID: 425852715}
   - component: {fileID: 425852714}
   - component: {fileID: 425852713}
-  - component: {fileID: 425852716}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1011,29 +1015,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &425852716
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 425852712}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5c69b9a86e17480797970d5d1eb7ff1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cellArray:
-  - {fileID: 4812562001097183264, guid: 4d542f40b68bdb24ca3593f3866886e0, type: 3}
-  - {fileID: 3290983579196518298, guid: 97f3bf1eb54687140938afd1407dc500, type: 3}
-  - {fileID: 6394423898562580989, guid: cd4fd5c6a709c1f429efeaedb8726978, type: 3}
-  - {fileID: 7375754522092190089, guid: e6018c75533002146a6bc51efbfd72d2, type: 3}
-  - {fileID: 4812562001097183264, guid: ebd8211b0509fe24a92b2647da105190, type: 3}
-  - {fileID: 4812562001097183264, guid: d84a5e65e0bfeeb4da96511f8761379c, type: 3}
-  - {fileID: 1717357534639331118, guid: 9df0cb9848129fd4182c6512ae1733b0, type: 3}
-  submarine: {fileID: 241629104}
-  casePosition: 1
-  portionHeight: 6
 --- !u!1 &480817004
 GameObject:
   m_ObjectHideFlags: 0
@@ -1460,8 +1441,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45f326a19aa1f4301b6e90233f73c11c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  marginTop: 100
-  marginBottom: 100
+  marginTop: 200
+  marginBottom: 200
   depthSliderSprite: {fileID: 1482558498}
   cursor: {fileID: 936906745}
   submarine: {fileID: 241629104}
@@ -2314,6 +2295,8 @@ GameObject:
   - component: {fileID: 1897463742}
   - component: {fileID: 1897463741}
   - component: {fileID: 1897463744}
+  - component: {fileID: 1897463746}
+  - component: {fileID: 1897463747}
   - component: {fileID: 1897463745}
   m_Layer: 0
   m_Name: EventSystem
@@ -2485,6 +2468,45 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1897463746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1897463740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 509f18039f64b4b4d928ef42fc446187, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxPortionHeight: 6
+  minPortionHeight: 6
+  portionTokenPrefab: {fileID: 6473083422907274725, guid: a56da815f6c514b20944086ef66f6d7c,
+    type: 3}
+--- !u!114 &1897463747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1897463740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5c69b9a86e17480797970d5d1eb7ff1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cellArray:
+  - {fileID: 4812562001097183264, guid: 4d542f40b68bdb24ca3593f3866886e0, type: 3}
+  - {fileID: 3290983579196518298, guid: 97f3bf1eb54687140938afd1407dc500, type: 3}
+  - {fileID: 6394423898562580989, guid: cd4fd5c6a709c1f429efeaedb8726978, type: 3}
+  - {fileID: 7375754522092190089, guid: e6018c75533002146a6bc51efbfd72d2, type: 3}
+  - {fileID: 4812562001097183264, guid: ebd8211b0509fe24a92b2647da105190, type: 3}
+  - {fileID: 4812562001097183264, guid: d84a5e65e0bfeeb4da96511f8761379c, type: 3}
+  - {fileID: 1717357534639331118, guid: 9df0cb9848129fd4182c6512ae1733b0, type: 3}
+  submarine: {fileID: 241629104}
+  casePosition: 2
+  portionHeight: 5
 --- !u!1 &2018493205 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7476075893019841560, guid: e8c7879bb757c1a48bfa4da8dfae664c,
