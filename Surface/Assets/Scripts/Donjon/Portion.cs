@@ -6,26 +6,27 @@ public class Portion : MonoBehaviour
 {
     private int[][] portionArray = new int[0][];
     PortionGenerator generator = new PortionGenerator();
-    [SerializeField]PortionDisplay portionDisplay;
+    PortionDisplay portionDisplay;
     int stage = 0;
-    List<GameObject> next = new List<GameObject>();
+    [SerializeField]List<GameObject> next = new List<GameObject>();
+    int portionHeight = 0;
 
     private void Start()
     {
-        Debug.Log("New Portion Instance");
+        //Debug.Log("New Portion Instance");
         portionDisplay = GameObject.Find("EventSystem").GetComponent<PortionDisplay>();
     }
-    public Portion(int height)
-    {
-        portionArray = generator.Generate(height);
-    }
+    //public Portion(int height)
+    //{
+    //    portionArray = generator.Generate(height);
+    //}
 
-    public Portion(int height, int stage)
-    {
-        Debug.Log("New Portion");
-        portionArray = generator.Generate(height);
-        this.stage = stage;
-    }
+    //public Portion(int height, int stage)
+    //{
+    //    //Debug.Log("New Portion");
+    //    portionArray = generator.Generate(height);
+    //    this.stage = stage;
+    //}
 
     public int[][] GetPortion()
     {
@@ -49,26 +50,45 @@ public class Portion : MonoBehaviour
 
     public void SetPortionArray(int[][] pa)
     {
-        Debug.Log("INITIALIZED");
+        //Debug.Log("INITIALIZED");
         portionArray = pa;
-        //for (int i = 0; i < portionArray.Length; i++)
-        //{
-        //    for (int j = 0; j < portionArray[i].Length; j++)
-        //    {
-        //        Debug.Log(portionArray[i][j]);
-        //    }
-        //}
+        portionHeight = portionArray.Length;
+        //Debug.Log(portionArray.Length);
     }
 
     public void OnMouseDown()
     {
-
+        Debug.Log(gameObject.name);
         portionDisplay.Display(portionArray);
     }
 
     public void SetStage(int stage)
     {
         this.stage = stage;
+    }
+
+    public void TraceLines(Material lineMaterial) //Trancer les lignes reliants aux voisins
+    {
+        gameObject.AddComponent<LineRenderer>();
+        LineRenderer lineRenderer = GetComponent<LineRenderer>();
+        if (next.Count != 1) lineRenderer.positionCount = next.Count * 2 - 1;
+        else lineRenderer.positionCount = 2;
+        lineRenderer.endWidth = 0.3f;
+        lineRenderer.startWidth = 0.3f;
+        lineRenderer.material = lineMaterial;
+        int j = 0;
+        for (int i = 0; i < lineRenderer.positionCount; i++)
+        {
+            if (i % 2 == 1)
+            {
+                lineRenderer.SetPosition(i, transform.position);
+            }
+            else
+            {
+                lineRenderer.SetPosition(i, next[j].transform.position);
+                j++;
+            }
+        }
     }
 
 }

@@ -7,19 +7,32 @@ public class PortionDisplay : MonoBehaviour
     [SerializeField] GameObject[] cellArray = new GameObject[7]; //Ordre: Incident, Monstre, Batterie, Obstacle, Power-Up, Medkit, JSE
     [SerializeField] PlayerController submarine;
     [SerializeField] float casePosition = 2;
-    [SerializeField] int portionHeight = 5;
+    //[SerializeField] int portionHeight = 5;
     private PortionGenerator portionGenerator = new PortionGenerator();
-    private List<GameObject[]> instancedCells = new List<GameObject[]>();
+    private List<GameObject[]> instancedCells;
+    public GameObject[] portionSelectors;
+
+    private void Start()
+    {
+        portionSelectors = GameObject.FindGameObjectsWithTag("PortionSelector");
+    }
 
     public void Display(int[][] portionToDisplay)
     {
+        instancedCells = new List<GameObject[]>();
+        for (int i = 0; i < portionSelectors.Length; i++)
+        {
+            portionSelectors[i].SetActive(false);
+        }
         for (int i = 0; i < cellArray.Length; i++)
         {
             if(cellArray[i].GetComponent<CellController>()!= null) cellArray[i].GetComponent<CellController>().submarine = submarine;
         }
 
         //int[][] portionNow = portionGenerator.Generate(portionHeight); //A remplacer par un GetPortion() quand le systeme d'arbre sera code
+        //Debug.Log("in Display");
         int[][] portionNow = portionToDisplay;
+        //Debug.Log(portionToDisplay.Length);
 
 
 
@@ -65,6 +78,7 @@ public class PortionDisplay : MonoBehaviour
                     GameObject go = Instantiate(cellArray[portionNow[i][i]]);
                     go.transform.position = new Vector3(posX + casePosition, -portionNow.Length + 1, 0);
                     submarine.currentCell = go.GetComponent<CellController>();
+                    submarine.Activate();
                     sameLineCells.Add(go);
                     GameObject[] sameLineCellsArray = sameLineCells.ToArray();
                     if (sameLineCells.Count.Equals(portionNow[i].Length)) instancedCells.Add(sameLineCellsArray);
@@ -99,9 +113,13 @@ public class PortionDisplay : MonoBehaviour
         GameObject[][] instancedCellsArray = instancedCells.ToArray();
         for (int i = 0; i < instancedCellsArray.Length; i++)
         {
+            Debug.Log("Length: " + instancedCellsArray.Length);
+            Debug.Log("I: " + i);
             for(int j = 0; j < instancedCellsArray[i].Length; j++)
             {
-                if(i == 0 && j == 0)
+                Debug.Log("Length["+i+"]: " + instancedCellsArray[i].Length);
+                Debug.Log("J: " + j);
+                if (i == 0 && j == 0)
                 {
                     instancedCellsArray[i][j].GetComponent<CellController>().GetNearCellList().Add(instancedCellsArray[i+1][j].GetComponent<CellController>());//au dessus a gauche
                     instancedCellsArray[i][j].GetComponent<CellController>().GetNearCellList().Add(instancedCellsArray[i + 1][j+1].GetComponent<CellController>());//au dessus a droite

@@ -422,7 +422,7 @@ PrefabInstance:
     - target: {fileID: 4684199910173812898, guid: b39975fcd7dfb6a4b904955f1b1a064f,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4684199910173812899, guid: b39975fcd7dfb6a4b904955f1b1a064f,
         type: 3}
@@ -2482,8 +2482,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxPortionHeight: 6
   minPortionHeight: 6
-  portionTokenPrefab: {fileID: 6473083422907274725, guid: a56da815f6c514b20944086ef66f6d7c,
-    type: 3}
+  portionTokenSprite: {fileID: 21300000, guid: 59989a9cfb3964f589ee29adac1d0d98, type: 3}
+  submarine: {fileID: 241629104}
+  lineMaterial: {fileID: 2100000, guid: b9e47e4cef6e24569abe757b2fec9546, type: 2}
 --- !u!114 &1897463747
 MonoBehaviour:
   m_ObjectHideFlags: 0
