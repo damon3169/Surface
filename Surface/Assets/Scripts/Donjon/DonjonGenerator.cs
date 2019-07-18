@@ -17,7 +17,7 @@ public class DonjonGenerator : MonoBehaviour
     List<GameObject> pStage4 = new List<GameObject>();
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         submarine.gameObject.SetActive(false);
         int n = 1; //Generation portions stage 1
