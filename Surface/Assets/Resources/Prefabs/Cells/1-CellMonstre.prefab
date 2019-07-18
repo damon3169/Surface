@@ -94,6 +94,18 @@ PrefabInstance:
       propertyPath: submarine
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4812562001097183265, guid: ebd8211b0509fe24a92b2647da105190,
+        type: 3}
+      propertyPath: hideCellSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 59989a9cfb3964f589ee29adac1d0d98,
+        type: 3}
+    - target: {fileID: 4812562001097183265, guid: ebd8211b0509fe24a92b2647da105190,
+        type: 3}
+      propertyPath: revealCellSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 59989a9cfb3964f589ee29adac1d0d98,
+        type: 3}
     - target: {fileID: 4812562001097183276, guid: ebd8211b0509fe24a92b2647da105190,
         type: 3}
       propertyPath: m_SpriteTilingProperty.border.x
