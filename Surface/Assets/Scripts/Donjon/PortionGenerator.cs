@@ -4,19 +4,20 @@ using UnityEngine;
 
 public class PortionGenerator : MonoBehaviour
 {
-    List<int[]> portion = new List<int[]>();
+    List<int[]> portion;
     LinesGenerator linesGenerator = new LinesGenerator();
 
     private void Start()
     {
-        for(int i = 0; i < 10; i++)
-        {
-            Generate(10);
-        }
+        //for(int i = 0; i < 10; i++)
+        //{
+        //    Generate(10);
+        //}
     }
 
-    void Generate(int height)
+    public int[][] Generate(int height)
     {
+        portion = new List<int[]>();
         int randDifficulty = 0;
         int[] newLine = new int[1];
         float difficultyValue = 0f;
@@ -43,13 +44,14 @@ public class PortionGenerator : MonoBehaviour
             if (newLine[0] == -1)
             {
                 Debug.LogError("Difficultés non valide");
-                return;
+                return null;
             }
             portion.Add(newLine);
         }
         difficultyValue /= height - 1;
-        Debug.Log("Total Difficuty: " + difficultyValue);
+        //Debug.Log("Total Difficuty: " + difficultyValue);
         //DebugDonjon();
+        return portion.ToArray();
 
     }
 
@@ -60,6 +62,5 @@ public class PortionGenerator : MonoBehaviour
             Debug.Log(linesGenerator.DebugLine(portion[i]));
         }
     }
-
 
 }

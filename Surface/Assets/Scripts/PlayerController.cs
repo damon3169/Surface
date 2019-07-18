@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
 	public CellController currentCell;
 	public CellController previousCell;
 	public int batterieCount = 0;
+    [SerializeField] private DepthCursorBehaviour cursor;
+    private PortionDisplay portionDisplay;
 
 	/// <summary>
 	/// How far the object should move when 'space' is pressed
@@ -28,8 +30,23 @@ public class PlayerController : MonoBehaviour
 	//The Time.time value when we started the interpolation
 	private float timeStartedLerping;
 
+    private void Start()
+    {
+        portionDisplay = GameObject.Find("EventSystem").GetComponent<PortionDisplay>();
+    }
 
-	public bool _isMovingToCell
+    public void Activate()
+    {
+        previousCell = null;
+        transform.position = currentCell.transform.position;
+        nearCellList = currentCell.GetNearCellList();
+        Debug.Log("SUBMARINE ACTIVATED");
+        Debug.Log(transform.position);
+        Debug.Log(currentCell.transform.position);
+        gameObject.SetActive(true);
+    }
+
+    public bool _isMovingToCell
 	{
 		get { return isMovingToCell; }
 		set
@@ -64,7 +81,14 @@ public class PlayerController : MonoBehaviour
 			previousCell = currentCell;
 		}
 		currentCell = newCell.GetComponent<CellController>();
-	}
+        nearCellList = newCell.GetComponent<CellController>().GetNearCellList();
+        cursor.ChangeCursorPos();
+        for(int i = 0; i < nearCellList.Count; i++)
+        {
+            if (nearCellList[i].transform.position.y > currentCell.transform.position.y) return;
+            else GoBackToPortionSelection();
+        }
+    }
 
 
 	public void addBattery()
@@ -112,4 +136,12 @@ public class PlayerController : MonoBehaviour
 	{
 		batterieCount++;
 	}
+
+    void GoBackToPortionSelection()
+    {
+        GameObject[] cells = GameObject.FindGameObjectsWithTag("Cell");
+        for (int i = 0; i < cells.Length; i++) cells[i].SetActive(false);
+        for (int i = 0; i < portionDisplay.portionSelectors.Length; i++) portionDisplay.portionSelectors[i].SetActive(true);
+        this.gameObject.SetActive(false);
+    }
 }

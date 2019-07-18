@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &1906193675141480925
+--- !u!1001 &8026060519076413370
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 4812562001097183264, guid: ebd8211b0509fe24a92b2647da105190,
         type: 3}
       propertyPath: m_Name
-      value: CellBatterie
+      value: 1-CellMonstre
       objectReference: {fileID: 0}
     - target: {fileID: 4812562001097183267, guid: ebd8211b0509fe24a92b2647da105190,
         type: 3}
@@ -67,11 +67,62 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4812562001097183267, guid: ebd8211b0509fe24a92b2647da105190,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4812562001097183267, guid: ebd8211b0509fe24a92b2647da105190,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4812562001097183266, guid: ebd8211b0509fe24a92b2647da105190,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 59989a9cfb3964f589ee29adac1d0d98,
+        type: 3}
     - target: {fileID: 4812562001097183265, guid: ebd8211b0509fe24a92b2647da105190,
         type: 3}
       propertyPath: myPopup
       value: 
-      objectReference: {fileID: 5480692880781202317, guid: ce08fc20d0179524db64f99d5e32a121,
+      objectReference: {fileID: 3901177661578067395, guid: 69c90f71bdf663f4a8597fa158be7a38,
         type: 3}
+    - target: {fileID: 4812562001097183265, guid: ebd8211b0509fe24a92b2647da105190,
+        type: 3}
+      propertyPath: submarine
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4812562001097183276, guid: ebd8211b0509fe24a92b2647da105190,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.border.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4812562001097183276, guid: ebd8211b0509fe24a92b2647da105190,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.border.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4812562001097183276, guid: ebd8211b0509fe24a92b2647da105190,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.border.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4812562001097183276, guid: ebd8211b0509fe24a92b2647da105190,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.border.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4812562001097183276, guid: ebd8211b0509fe24a92b2647da105190,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4812562001097183276, guid: ebd8211b0509fe24a92b2647da105190,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ebd8211b0509fe24a92b2647da105190, type: 3}
