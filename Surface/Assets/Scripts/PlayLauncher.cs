@@ -10,6 +10,6 @@ public class PlayLauncher : ButtonController
 	{
 		Debug.Log("test");
 		PlayerPrefs.SetInt("numberCase", transform.parent.transform.childCount - 1);
-		SceneManager.LoadScene("Play");
+		SceneManager.LoadScene("Play 2");
 	}
 }

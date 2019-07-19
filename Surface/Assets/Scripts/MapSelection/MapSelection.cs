@@ -10,8 +10,9 @@ public class MapSelection : MonoBehaviour
 	int numPlayerSelected = 2;
 
 	public Vector2 StartPos;
+	public Vector2 StartPos2;
 	int SwipeID = -1;
-	float minMovement = 20.0f;
+	public float minMovement = 20.0f;
 	bool goingRight;
 	float scaleX;
 	public float floatHeight;     // Desired floating height.
@@ -38,6 +39,7 @@ public class MapSelection : MonoBehaviour
 	public bool isPopupOpen = false;
 	public Event m_Event;
 	public float firstPositionMiniMap = 1.70f;
+	public Vector3 delta;
 
 	void selectMaps()
 	{
@@ -55,10 +57,11 @@ public class MapSelection : MonoBehaviour
 			GameObject parent = Instantiate(mapContainerPrefab, this.transform);
 
 			parent.transform.position = new Vector3(this.transform.position.x + widthCollider * i, this.transform.position.y, this.transform.position.z);
+			parent.GetComponent<MapContainersController>().mapIndex = i;
 			Instantiate(map, parent.transform);
 			SelectedMaps.Add(parent);
 			parent = Instantiate(mapButtonPrefab, containersMapButton.transform);
-			ratio = (firstPositionMiniMap * 2) / (mapOriginalSelected.Count-1);
+			ratio = (firstPositionMiniMap * 2) / (mapOriginalSelected.Count - 1);
 			parent.transform.position = new Vector3(-firstPositionMiniMap + ratio * i, containersMapButton.transform.position.y, containersMapButton.transform.position.z);
 			parent.GetComponent<MapButtonController>().MapIndex = i;
 			mapButtonList.Add(parent);
@@ -100,77 +103,57 @@ public class MapSelection : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		foreach (var T in Input.touches)
-		{
-			var P = T.position;
-			if (T.phase == TouchPhase.Began && SwipeID == -1)
+		if(!isPopupOpen){
+			foreach (var T in Input.touches)
 			{
-				SwipeID = T.fingerId;
-				StartPos = P;
-			}
-			/*else if (T.fingerId == SwipeID)
-			{*/
-
-			var delta = P - StartPos;
-			if (T.phase == TouchPhase.Moved && delta.magnitude > minMovement)
-			{
-				if (this.transform.position.x > mapMinPositionX && mapFocused > 0)
+				var P = T.position;
+				if (T.phase == TouchPhase.Began)
 				{
-
-					ChangeFocusedMap(mapFocused - 1);
+					StartPos = P;
 				}
-
-				else if (this.transform.position.x < mapMaxPositionX && mapFocused < SelectedMaps.Count - 1)
+				delta = P - StartPos;
+				Debug.Log(StartPos+" "+ T.position);
+				if (T.phase == TouchPhase.Moved && delta.magnitude > minMovement)
 				{
-					ChangeFocusedMap(mapFocused + 1);
-				}
-				SwipeID = -1;
-				if (Mathf.Abs(delta.x) > Mathf.Abs(delta.y))
-				{
-					lerpMapStop();
-					if (delta.x > 0)
+					if (this.transform.position.x > mapMinPositionX && mapFocused > 0)
 					{
-
-						if (goingRight == false)
-						{
-							lerpMapStop();
-							StartPos = T.position;
-							delta = P - StartPos;
-							goingRight = true;
-						}
-						if (this.transform.position.x < 0)
-						{
-
-							transform.position += new Vector3(0.7f, 0, 0);
-						}
-
+						ChangeFocusedMap(mapFocused - 1);
 					}
-					else
+
+					else if (this.transform.position.x < mapMaxPositionX && mapFocused < SelectedMaps.Count - 1)
 					{
-						if (goingRight == true)
+						ChangeFocusedMap(mapFocused + 1);
+					}
+					if (Mathf.Abs(delta.x) > Mathf.Abs(delta.y))
+					{
+						lerpMapStop();
+						if (delta.x > 0)
 						{
-							lerpMapStop();
-							StartPos = T.position;
-							delta = P - StartPos;
-							goingRight = false;
+
+							if (this.transform.position.x < 0)
+							{
+
+								transform.position += new Vector3(0.05f, 0, 0);
+							}
+
 						}
-
-						if (this.transform.position.x > -(scaleX / 2 + widthCollider / 2))
+						else
 						{
-							Debug.Log(-(scaleX / 2 + widthCollider / 2));
 
-							transform.position += new Vector3(-0.7f, 0, 0);
+
+							if (this.transform.position.x > -(scaleX / 2 + widthCollider / 2))
+							{
+
+								transform.position += new Vector3(-0.05f, 0, 0);
+							}
 						}
 					}
 				}
+				else if (T.phase == TouchPhase.Canceled || T.phase == TouchPhase.Ended)
+				{
+					lerpMap();
+				}
 			}
-			else if (T.phase == TouchPhase.Canceled || T.phase == TouchPhase.Ended)
-			{
-				SwipeID = -1;
-				Debug.Log("passe la");
-				lerpMap();
-			}
-
 		}
 
 
@@ -193,9 +176,9 @@ public class MapSelection : MonoBehaviour
 	public void ChangeFocusedMap(int newMapIndex)
 	{
 		mapFocused = newMapIndex;
-		mapMinPositionX = -widthCollider * mapFocused + widthCollider/2;
+		mapMinPositionX = -widthCollider * mapFocused + widthCollider / 2;
 		targetPostion = new Vector3(-widthCollider * mapFocused, 0, 0);
-		mapMaxPositionX = -widthCollider * mapFocused - widthCollider/2;
+		mapMaxPositionX = -widthCollider * mapFocused - widthCollider / 2;
 	}
 
 	void OnGUI()
@@ -206,14 +189,14 @@ public class MapSelection : MonoBehaviour
 
 			if (m_Event.type == EventType.MouseDown)
 			{
-				StartPos = m_Event.mousePosition;
+				StartPos2 = m_Event.mousePosition;
 				timeMouseDown = Time.time;
 			}
 
 			if (m_Event.type == EventType.MouseDrag)
 			{
-				var delta = m_Event.mousePosition - StartPos;
-				if (delta.magnitude > minMovement)
+				var delta2 = m_Event.mousePosition - StartPos2;
+				if (delta2.magnitude > minMovement)
 				{
 					if (this.transform.position.x > mapMinPositionX && mapFocused > 0)
 					{
@@ -224,19 +207,12 @@ public class MapSelection : MonoBehaviour
 					{
 						ChangeFocusedMap(mapFocused + 1);
 					}
-					if (Mathf.Abs(delta.x) > Mathf.Abs(delta.y))
+					if (Mathf.Abs(delta2.x) > Mathf.Abs(delta2.y))
 					{
 						lerpMapStop();
-						if (delta.x > 0)
+						if (delta2.x > 0)
 						{
 
-							if (goingRight == false)
-							{
-								lerpMapStop();
-								StartPos = m_Event.mousePosition;
-								delta = m_Event.mousePosition - StartPos;
-								goingRight = true;
-							}
 							if (this.transform.position.x < 0)
 							{
 								transform.position += new Vector3(0.2f, 0, 0);
@@ -245,16 +221,8 @@ public class MapSelection : MonoBehaviour
 						}
 						else
 						{
-							if (goingRight == true)
-							{
-								lerpMapStop();
-								StartPos = m_Event.mousePosition;
-								delta = m_Event.mousePosition - StartPos;
-								goingRight = false;
-							}
 							if (this.transform.position.x > -(SelectedMaps[SelectedMaps.Count - 1].transform.localPosition.x + widthCollider / 2))
 							{
-								Debug.Log(this.transform.position.x > -(SelectedMaps[SelectedMaps.Count - 1].transform.localPosition.x + widthCollider / 2));
 								transform.position += new Vector3(-0.2f, 0, 0);
 							}
 						}
@@ -264,7 +232,7 @@ public class MapSelection : MonoBehaviour
 
 			if (m_Event.type == EventType.MouseUp)
 			{
-				if (Time.time - timeMouseDown < 0.2f && StartPos == m_Event.mousePosition)
+				if (Time.time - timeMouseDown < 0.2f && StartPos2 == m_Event.mousePosition)
 				{
 
 				}

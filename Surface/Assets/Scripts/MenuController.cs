@@ -7,7 +7,7 @@ public class MenuController : MonoBehaviour
 {
 	public void ClickOnPlay()
 	{
-		SceneManager.LoadScene("LevelSelect");
+		SceneManager.LoadScene("LevelSelect 1");
 	}
 
 	public void ClickOnExit()

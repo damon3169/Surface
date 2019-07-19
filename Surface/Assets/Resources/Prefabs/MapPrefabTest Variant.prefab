@@ -471,6 +471,77 @@ PrefabInstance:
       propertyPath: m_Name
       value: MapPrefabTest Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 8548887988015675260, guid: abd9d7a6ad4b2954fa5421eb7102ea5e,
+        type: 3}
+      propertyPath: Tiles.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8548887988015675260, guid: abd9d7a6ad4b2954fa5421eb7102ea5e,
+        type: 3}
+      propertyPath: maxPlayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8548887988015675260, guid: abd9d7a6ad4b2954fa5421eb7102ea5e,
+        type: 3}
+      propertyPath: isEnable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8548887988015675260, guid: abd9d7a6ad4b2954fa5421eb7102ea5e,
+        type: 3}
+      propertyPath: Tiles.Array.data[1]
+      value: 
+      objectReference: {fileID: 4560117253721703976}
+    - target: {fileID: 8548887988015675260, guid: abd9d7a6ad4b2954fa5421eb7102ea5e,
+        type: 3}
+      propertyPath: Tiles.Array.data[2]
+      value: 
+      objectReference: {fileID: 4560117254279056478}
+    - target: {fileID: 8548887988015675260, guid: abd9d7a6ad4b2954fa5421eb7102ea5e,
+        type: 3}
+      propertyPath: Tiles.Array.data[3]
+      value: 
+      objectReference: {fileID: 4560117252842731304}
+    - target: {fileID: 8548887988015675260, guid: abd9d7a6ad4b2954fa5421eb7102ea5e,
+        type: 3}
+      propertyPath: Tiles.Array.data[4]
+      value: 
+      objectReference: {fileID: 4560117253576281674}
+    - target: {fileID: 8548887988015675260, guid: abd9d7a6ad4b2954fa5421eb7102ea5e,
+        type: 3}
+      propertyPath: Tiles.Array.data[5]
+      value: 
+      objectReference: {fileID: 4560117253518989773}
+    - target: {fileID: 8548887988015675260, guid: abd9d7a6ad4b2954fa5421eb7102ea5e,
+        type: 3}
+      propertyPath: Tiles.Array.data[6]
+      value: 
+      objectReference: {fileID: 4560117252644058024}
+    - target: {fileID: 8548887988015675260, guid: abd9d7a6ad4b2954fa5421eb7102ea5e,
+        type: 3}
+      propertyPath: Tiles.Array.data[7]
+      value: 
+      objectReference: {fileID: 1846224706}
+    - target: {fileID: 8548887988015675260, guid: abd9d7a6ad4b2954fa5421eb7102ea5e,
+        type: 3}
+      propertyPath: Tiles.Array.data[8]
+      value: 
+      objectReference: {fileID: 939815636}
+    - target: {fileID: 8548887988015675260, guid: abd9d7a6ad4b2954fa5421eb7102ea5e,
+        type: 3}
+      propertyPath: Tiles.Array.data[9]
+      value: 
+      objectReference: {fileID: 1672682048}
+    - target: {fileID: 8548887988015675260, guid: abd9d7a6ad4b2954fa5421eb7102ea5e,
+        type: 3}
+      propertyPath: LastSelectedGameObject
+      value: 
+      objectReference: {fileID: 6175002752300231440}
+    - target: {fileID: 8548887988015675260, guid: abd9d7a6ad4b2954fa5421eb7102ea5e,
+        type: 3}
+      propertyPath: myPopup
+      value: 
+      objectReference: {fileID: 6354725341594188844, guid: b4b2780f5d768b24d962407041cee8bb,
+        type: 3}
     - target: {fileID: 8548887988015675205, guid: abd9d7a6ad4b2954fa5421eb7102ea5e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -536,77 +607,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -1
       objectReference: {fileID: 0}
-    - target: {fileID: 8548887988015675260, guid: abd9d7a6ad4b2954fa5421eb7102ea5e,
-        type: 3}
-      propertyPath: Tiles.Array.size
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8548887988015675260, guid: abd9d7a6ad4b2954fa5421eb7102ea5e,
-        type: 3}
-      propertyPath: maxPlayer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8548887988015675260, guid: abd9d7a6ad4b2954fa5421eb7102ea5e,
-        type: 3}
-      propertyPath: isEnable
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8548887988015675260, guid: abd9d7a6ad4b2954fa5421eb7102ea5e,
-        type: 3}
-      propertyPath: Tiles.Array.data[1]
-      value: 
-      objectReference: {fileID: 4560117253721703976}
-    - target: {fileID: 8548887988015675260, guid: abd9d7a6ad4b2954fa5421eb7102ea5e,
-        type: 3}
-      propertyPath: Tiles.Array.data[2]
-      value: 
-      objectReference: {fileID: 4560117254279056478}
-    - target: {fileID: 8548887988015675260, guid: abd9d7a6ad4b2954fa5421eb7102ea5e,
-        type: 3}
-      propertyPath: Tiles.Array.data[3]
-      value: 
-      objectReference: {fileID: 4560117252842731304}
-    - target: {fileID: 8548887988015675260, guid: abd9d7a6ad4b2954fa5421eb7102ea5e,
-        type: 3}
-      propertyPath: Tiles.Array.data[4]
-      value: 
-      objectReference: {fileID: 4560117253576281674}
-    - target: {fileID: 8548887988015675260, guid: abd9d7a6ad4b2954fa5421eb7102ea5e,
-        type: 3}
-      propertyPath: Tiles.Array.data[5]
-      value: 
-      objectReference: {fileID: 4560117253518989773}
-    - target: {fileID: 8548887988015675260, guid: abd9d7a6ad4b2954fa5421eb7102ea5e,
-        type: 3}
-      propertyPath: Tiles.Array.data[6]
-      value: 
-      objectReference: {fileID: 4560117252644058024}
-    - target: {fileID: 8548887988015675260, guid: abd9d7a6ad4b2954fa5421eb7102ea5e,
-        type: 3}
-      propertyPath: Tiles.Array.data[7]
-      value: 
-      objectReference: {fileID: 1846224706}
-    - target: {fileID: 8548887988015675260, guid: abd9d7a6ad4b2954fa5421eb7102ea5e,
-        type: 3}
-      propertyPath: Tiles.Array.data[8]
-      value: 
-      objectReference: {fileID: 939815636}
-    - target: {fileID: 8548887988015675260, guid: abd9d7a6ad4b2954fa5421eb7102ea5e,
-        type: 3}
-      propertyPath: Tiles.Array.data[9]
-      value: 
-      objectReference: {fileID: 1672682048}
-    - target: {fileID: 8548887988015675260, guid: abd9d7a6ad4b2954fa5421eb7102ea5e,
-        type: 3}
-      propertyPath: LastSelectedGameObject
-      value: 
-      objectReference: {fileID: 6175002752300231440}
-    - target: {fileID: 8548887988015675260, guid: abd9d7a6ad4b2954fa5421eb7102ea5e,
-        type: 3}
-      propertyPath: myPopup
-      value: 
-      objectReference: {fileID: 6354725341594188844, guid: b4b2780f5d768b24d962407041cee8bb,
-        type: 3}
     - target: {fileID: 8548887986843728123, guid: abd9d7a6ad4b2954fa5421eb7102ea5e,
         type: 3}
       propertyPath: isBaseTile
@@ -704,11 +704,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7708700426613815964, guid: 9653ad6d17d25b940a4e715a77200728,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.007
-      objectReference: {fileID: 0}
     - target: {fileID: 7708700426480993155, guid: 9653ad6d17d25b940a4e715a77200728,
         type: 3}
       propertyPath: positionInMap.x
@@ -718,6 +713,11 @@ PrefabInstance:
         type: 3}
       propertyPath: positionInMap.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7708700426613815964, guid: 9653ad6d17d25b940a4e715a77200728,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.007
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9653ad6d17d25b940a4e715a77200728, type: 3}

@@ -23,13 +23,15 @@ public class MapManager : MonoBehaviour
 	// Update is called once per frame
 
 	void Start()
-	{		/*foreach (GameObject tile in Tiles)
-		{
-			tile.GetComponent<TileController>().GetHits();
-		}*/
+	{
 
+			for (int i = 0; i < transform.childCount - 1; i++)
+			{
+				transform.GetChild(i).GetComponent<Collider2D>().enabled = false;
+			}
 	}
 #if (UNITY_EDITOR)
+	
 	public void CreateTile()
 	{
 		isEditEnable = false;
@@ -54,13 +56,14 @@ public class MapManager : MonoBehaviour
 	{
 		if (Application.isEditor && isEditEnable && !EditorApplication.isPlayingOrWillChangePlaymode)
 		{
-
 			if (LastSelectedGameObject && Selection.activeGameObject != LastSelectedGameObject && LastSelectedGameObject.tag == "Tile")
 			{
 				LastSelectedGameObject.GetComponent<TileController>().GetHits();
 			}
 			LastSelectedGameObject = Selection.activeGameObject;
 		}
+
+		
 	}
 
 
