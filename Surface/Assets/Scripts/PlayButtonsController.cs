@@ -137,8 +137,6 @@ public class PlayButtonsController : MonoBehaviour
 			yield return new WaitForSeconds(0.1f);
 			System.Random rand = new System.Random(); // This seems to repeat itself and is slow!
 			int randomNum = rand.Next(1, PlayerPrefs.GetInt("numberCase") + 1);
-			randomNum = rand.Next(1, PlayerPrefs.GetInt("numberCase") + 1);
-
 			isDiceMoving = true;
 			DiceTimer -= 1;
 			//map.Tiles[lastValue].transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.white;

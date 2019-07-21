@@ -9,7 +9,7 @@ public class PlayLauncher : ButtonController
 	protected override void OnMouseDown()
 	{
 		Debug.Log("test");
-		PlayerPrefs.SetInt("numberCase", transform.parent.transform.childCount - 1);
+		PlayerPrefs.SetInt("numberCase", transform.parent.parent.childCount - 1);
 		SceneManager.LoadScene("Play 2");
 	}
 }
