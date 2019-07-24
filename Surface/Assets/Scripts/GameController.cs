@@ -39,9 +39,9 @@ public class GameController : MonoBehaviour
 	{
 		Screen.sleepTimeout = SleepTimeout.NeverSleep;
 		phaseTime = new List<float[]>();
-		phaseTime.Add(new float[] { 0, 1 });
-		phaseTime.Add(new float[] { 5, 0 });
-		phaseTime.Add(new float[] { 7, 0 });
+		phaseTime.Add(new float[] { 6, 0 });
+		phaseTime.Add(new float[] { 10, 0 });
+		phaseTime.Add(new float[] { 14, 0 });
 		if (phaseTime[phase][1] >= 10)
 			textTimer.text = "0" + phaseTime[phase][0].ToString() + ":" + phaseTime[phase][1].ToString().Substring(0, 2);
 		else { textTimer.text = "0" + phaseTime[phase][0].ToString() + ":0" + phaseTime[phase][1].ToString().Substring(0, 1); }

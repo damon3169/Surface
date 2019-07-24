@@ -11,13 +11,19 @@ public class PortionDisplay : MonoBehaviour
     private PortionGenerator portionGenerator = new PortionGenerator();
     private List<GameObject[]> instancedCells;
     public GameObject[] portionSelectors;
+	public GameObject resisableCont;
 
     private void Start()
     {
         portionSelectors = GameObject.FindGameObjectsWithTag("PortionSelector");
-    }
+		foreach (GameObject portion in portionSelectors)
+		{
+			portion.transform.parent = GameObject.FindGameObjectWithTag("Donjon").transform;
+		}
 
-    public void Display(int[][] portionToDisplay)
+	}
+
+    public void Display(int[][] portionToDisplay, Portion portion)
     {
         instancedCells = new List<GameObject[]>();
         for (int i = 0; i < portionSelectors.Length; i++)
@@ -32,11 +38,13 @@ public class PortionDisplay : MonoBehaviour
         //int[][] portionNow = portionGenerator.Generate(portionHeight); //A remplacer par un GetPortion() quand le systeme d'arbre sera code
         //Debug.Log("in Display");
         int[][] portionNow = portionToDisplay;
-        //Debug.Log(portionToDisplay.Length);
+		//Debug.Log(portionToDisplay.Length);
 
 
+		GameObject cont = Instantiate(resisableCont);
+		cont.name = portion.name + " cells";
 
-        float posX = 0;
+		float posX = 0;
         int posY = 0;
         for (int i = 0; i < portionNow.Length; i++)
         {
@@ -79,7 +87,9 @@ public class PortionDisplay : MonoBehaviour
                     go.transform.position = new Vector3(posX + casePosition, -portionNow.Length + 1, 0);
                     submarine.currentCell = go.GetComponent<CellController>();
                     submarine.Activate();
-                    sameLineCells.Add(go);
+					go.transform.parent = cont.transform;
+
+					sameLineCells.Add(go);
                     GameObject[] sameLineCellsArray = sameLineCells.ToArray();
                     if (sameLineCells.Count.Equals(portionNow[i].Length)) instancedCells.Add(sameLineCellsArray);
                 }
@@ -87,7 +97,9 @@ public class PortionDisplay : MonoBehaviour
                 {
                     GameObject go = Instantiate(cellArray[portionNow[i][j]]);
                     go.transform.position = new Vector3(posX + casePosition, -portionNow.Length + i + posY, 0);
-                    sameLineCells.Add(go);
+					go.transform.parent = cont.transform;
+
+					sameLineCells.Add(go);
                     GameObject[] sameLineCellsArray = sameLineCells.ToArray();
                     if (sameLineCells.Count.Equals(portionNow[i].Length)) instancedCells.Add(sameLineCellsArray);
                 }
@@ -95,7 +107,9 @@ public class PortionDisplay : MonoBehaviour
                 {
                     GameObject go = Instantiate(cellArray[portionNow[i][j]]);
                     go.transform.position = new Vector3(posX + casePosition, -portionNow.Length + i + posY, 0);
-                    sameLineCells.Add(go);
+					go.transform.parent = cont.transform;
+
+					sameLineCells.Add(go);
                     GameObject[] sameLineCellsArray = sameLineCells.ToArray();
                     if (sameLineCells.Count.Equals(portionNow[i].Length)) instancedCells.Add(sameLineCellsArray);
                 }
@@ -103,7 +117,9 @@ public class PortionDisplay : MonoBehaviour
                 {
                     GameObject go = Instantiate(cellArray[portionNow[i][j]]);
                     go.transform.position = new Vector3(posX + casePosition, -portionNow.Length + i + posY, 0);
-                    sameLineCells.Add(go);
+					go.transform.parent = cont.transform;
+
+					sameLineCells.Add(go);
                     GameObject[] sameLineCellsArray = sameLineCells.ToArray();
                     if (sameLineCells.Count.Equals(portionNow[i].Length)) instancedCells.Add(sameLineCellsArray);
                 }
@@ -172,5 +188,10 @@ public class PortionDisplay : MonoBehaviour
                 }
             }
         }
-    }
+		cont.GetComponent<SizeInBox>().Resize();
+		/*foreach(GameObject cell in instancedCells)
+		{
+
+		}*/
+	}
 }

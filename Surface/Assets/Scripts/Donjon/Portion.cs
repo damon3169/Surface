@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Portion : MonoBehaviour
 {
     private int[][] portionArray = new int[0][];
@@ -10,6 +11,7 @@ public class Portion : MonoBehaviour
     int stage = 0;
     [SerializeField]List<GameObject> next = new List<GameObject>();
     int portionHeight = 0;
+	public List<GameObject> myCells;
 
     private void Start()
     {
@@ -59,7 +61,7 @@ public class Portion : MonoBehaviour
     public void OnMouseDown()
     {
         Debug.Log(gameObject.name);
-        portionDisplay.Display(portionArray);
+        portionDisplay.Display(portionArray,this);
     }
 
     public void SetStage(int stage)
