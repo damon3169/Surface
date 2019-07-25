@@ -36,13 +36,13 @@ public class DonjonGenerator : MonoBehaviour
         pStage1.GetComponent<Portion>().SetStage(1);
         //portionGoStage1.GetComponent<Portion>().SetNext(pStage1.GetNext());
         pStage1.transform.position = new Vector3(0, -8, 0);
-		//pStage1.GetComponent<SpriteRenderer>().color = new Color(0.6f, 0.4f, 0.3f);
-		//Instantiate(pStage1);
-		pStage1.GetComponent<Portion>().SetPortionArray(generator.Generate(Random.Range(minPortionHeight, maxPortionHeight)));
+        //pStage1.GetComponent<SpriteRenderer>().color = new Color(0.6f, 0.4f, 0.3f);
+        //Instantiate(pStage1);
+        pStage1.GetComponent<Portion>().SetPortionArray(generator.Generate(Random.Range(minPortionHeight, maxPortionHeight)));
 
 
 
-		n = Random.Range(2, 4); //Generation portions stage 2
+        n = Random.Range(2, 4); //Generation portions stage 2
         if (n > 3) n = 3;
         for (int i = 0; i < n; i++)
         {
@@ -57,15 +57,15 @@ public class DonjonGenerator : MonoBehaviour
             go.GetComponent<BoxCollider2D>().size = new Vector2(1f, 1f);
             //go.transform.localScale = new Vector3(2f, 2f, 2f);
             go.GetComponent<Portion>().SetStage(2);
-			float totalWidth = 6f;
-			float f = totalWidth / (n-1);
-            go.transform.position = new Vector3((-totalWidth / 2)+(i* f), -4, 0);
-			Debug.Log(n);
-			Debug.Log(f);
-			go.GetComponent<Portion>().SetPortionArray(generator.Generate(Random.Range(minPortionHeight, maxPortionHeight)));
+            float totalWidth = 6f;
+            float f = totalWidth / (n - 1);
+            go.transform.position = new Vector3((-totalWidth / 2) + (i * f), -4, 0);
+            Debug.Log(n);
+            Debug.Log(f);
+            go.GetComponent<Portion>().SetPortionArray(generator.Generate(Random.Range(minPortionHeight, maxPortionHeight)));
 
-			//Instantiate(go);
-			pStage2.Add(go);
+            //Instantiate(go);
+            pStage2.Add(go);
         }
 
 
@@ -83,14 +83,14 @@ public class DonjonGenerator : MonoBehaviour
             go.GetComponent<SpriteRenderer>().sprite = portionTokenSprite;
             go.GetComponent<BoxCollider2D>().isTrigger = true;
             go.GetComponent<BoxCollider2D>().size = new Vector2(1f, 1f);
-          //  go.transform.localScale = new Vector3(2f, 2f, 2f);
+            //  go.transform.localScale = new Vector3(2f, 2f, 2f);
             go.GetComponent<Portion>().SetStage(3);
             go.GetComponent<Portion>().SetPortionArray(generator.Generate(Random.Range(minPortionHeight, maxPortionHeight)));
-			float totalWidth = 6f;
-			float f = totalWidth / (n - 1);
-			go.transform.position = new Vector3((-totalWidth / 2) + (i * f), 0, 0);
-			//Instantiate(go);
-			pStage3.Add(go);
+            float totalWidth = 6f;
+            float f = totalWidth / (n - 1);
+            go.transform.position = new Vector3((-totalWidth / 2) + (i * f), 0, 0);
+            //Instantiate(go);
+            pStage3.Add(go);
         }
 
         n = Random.Range(3, 5); //Generation portions stage 4
@@ -106,52 +106,71 @@ public class DonjonGenerator : MonoBehaviour
             go.GetComponent<SpriteRenderer>().sprite = portionTokenSprite;
             go.GetComponent<BoxCollider2D>().isTrigger = true;
             go.GetComponent<BoxCollider2D>().size = new Vector2(1f, 1f);
-           // go.transform.localScale = new Vector3(2f, 2f, 2f);
+            // go.transform.localScale = new Vector3(2f, 2f, 2f);
             go.GetComponent<Portion>().SetStage(4);
             go.GetComponent<Portion>().SetPortionArray(generator.Generate(Random.Range(minPortionHeight, maxPortionHeight)));
-			float totalWidth = 6f;
-			float f = totalWidth / (n - 1);
-			go.transform.position = new Vector3((-totalWidth / 2) + (i * f), 4, 0);
-			//Instantiate(go);
-			pStage4.Add(go);
+            float totalWidth = 6f;
+            float f = totalWidth / (n - 1);
+            go.transform.position = new Vector3((-totalWidth / 2) + (i * f), 4, 0);
+            //Instantiate(go);
+            pStage4.Add(go);
         }
-		GameObject[] portionSelectors = GameObject.FindGameObjectsWithTag("PortionSelector");
-		foreach (GameObject portion in portionSelectors)
-		{
-			portion.transform.parent = GameObject.FindGameObjectWithTag("Donjon").transform;
-		}
-		GameObject.FindGameObjectWithTag("Donjon").GetComponent<SizeInBox>().Resize();
+        GameObject[] portionSelectors = GameObject.FindGameObjectsWithTag("PortionSelector");
+        foreach (GameObject portion in portionSelectors)
+        {
+            portion.transform.parent = GameObject.FindGameObjectWithTag("Donjon").transform;
+        }
+        GameObject.FindGameObjectWithTag("Donjon").GetComponent<SizeInBox>().Resize();
 
 
-		//Ajout des portions suivantes dans l'arbre
-		pStage1.GetComponent<Portion>().SetNext(pStage2);
+        //Ajout des portions suivantes dans l'arbre
+        pStage1.GetComponent<Portion>().SetNext(pStage2);
         pStage1.GetComponent<Portion>().TraceLines(lineMaterial);
 
-        for(int i = 0; i < pStage2.Count; i++)
+        for (int i = 0; i < pStage2.Count; i++)
         {
+            pStage2[i].GetComponent<Portion>().hasPrevious = true; //Les portions ont forcement comme précédent pStage1
             int numbOfNext = Random.Range(1, pStage3.Count - 1);
-            for(int j = 0; j < numbOfNext; j++)
+            for (int j = 0; j < numbOfNext; j++)
             {
                 int randomNext = Random.Range(0, pStage3.Count - 1);
                 pStage2[i].GetComponent<Portion>().SetNext(pStage3[randomNext]);
+                pStage3[randomNext].GetComponent<Portion>().hasPrevious = true;
             }
         }
-        for(int i = 0; i < pStage2.Count; i++) pStage2[i].GetComponent<Portion>().TraceLines(lineMaterial);
 
         for (int i = 0; i < pStage3.Count; i++)
         {
+            if (!pStage3[i].GetComponent<Portion>().hasPrevious) //Check si les portion ont un precedent, puis complete si non
+            {
+                int randPrevious = Random.Range(0, pStage2.Count - 1);
+                pStage2[randPrevious].GetComponent<Portion>().SetNext(pStage3[i]);
+            }
+
             int numbOfNext = Random.Range(1, pStage3.Count - 1);
             for (int j = 0; j < numbOfNext; j++)
             {
                 int randomNext = Random.Range(0, pStage4.Count - 1);
                 pStage3[i].GetComponent<Portion>().SetNext(pStage4[randomNext]);
+                pStage4[randomNext].GetComponent<Portion>().hasPrevious = true;
             }
         }
+
+        for(int i = 0; i < pStage4.Count; i++) //Check si les portion ont un precedent, puis complete si non
+        {
+            if (!pStage4[i].GetComponent<Portion>().hasPrevious)
+            {
+                int randPrevious = Random.Range(0, pStage3.Count - 1);
+                pStage3[randPrevious].GetComponent<Portion>().SetNext(pStage4[i]);
+            }
+        }
+
+        for (int i = 0; i < pStage2.Count; i++) pStage2[i].GetComponent<Portion>().TraceLines(lineMaterial);
         for (int i = 0; i < pStage3.Count; i++) pStage3[i].GetComponent<Portion>().TraceLines(lineMaterial);
 
-		
 
-	}
+
+    }
 
 
 
