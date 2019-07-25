@@ -12,6 +12,7 @@ public class Portion : MonoBehaviour
     [SerializeField]List<GameObject> next = new List<GameObject>();
     int portionHeight = 0;
 	public List<GameObject> myCells;
+    public bool hasPrevious = false;
 
     private void Start()
     {
@@ -69,7 +70,7 @@ public class Portion : MonoBehaviour
         this.stage = stage;
     }
 
-    public void TraceLines(Material lineMaterial) //Trancer les lignes reliants aux voisins
+    public void TraceLines(Material lineMaterial) //Tracer les lignes reliants aux voisins
     {
         gameObject.AddComponent<LineRenderer>();
         LineRenderer lineRenderer = GetComponent<LineRenderer>();
