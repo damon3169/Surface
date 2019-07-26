@@ -161,4 +161,9 @@ public class PlayButtonsController : MonoBehaviour
 	{
 		GameObject.Find("popup").SetActive(false);
 	}
+
+	public void onClickScanner()
+	{
+		GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().currentCell.Scanner();
+;	}
 }

@@ -12,6 +12,7 @@ TagManager:
   - MapSelection
   - Donjon
   - Sprite
+  - background
   layers:
   - Default
   - TransparentFX

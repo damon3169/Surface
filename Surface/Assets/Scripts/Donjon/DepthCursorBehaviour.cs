@@ -12,8 +12,9 @@ public class DepthCursorBehaviour : MonoBehaviour
     [SerializeField] private PlayerController submarine;
     private int depthHeight;
     private float offsetBetweenValues;
-    // Start is called before the first frame update
-    void Start()
+	public GameObject background;
+	// Start is called before the first frame update
+	void Start()
     {
         //Debug.Log("Depth Slider Height: " + depthSliderSprite.rectTransform.rect.height);
         depthHeight = (int)(depthSliderSprite.rectTransform.rect.height - marginTop - marginBottom);
@@ -34,10 +35,13 @@ public class DepthCursorBehaviour : MonoBehaviour
             {
                 float newCursorPosY = (cursor.rectTransform.position.y * 71.11111f + offsetBetweenValues) / 71.11111f;
                 cursor.rectTransform.position = new Vector3(cursor.rectTransform.position.x, newCursorPosY, cursor.rectTransform.position.z);
-            } else if (submarine.previousCell.transform.position.y > submarine.currentCell.transform.position.y)
+				background.GetComponent<BackgroundController>().lerpBackground(true);
+
+			} else if (submarine.previousCell.transform.position.y > submarine.currentCell.transform.position.y)
             {
                 float newCursorPosY = (cursor.rectTransform.position.y * 71.11111f - offsetBetweenValues) / 71.11111f;
-                cursor.rectTransform.position = new Vector3(cursor.rectTransform.position.x, newCursorPosY, cursor.rectTransform.position.z);
+				background.GetComponent<BackgroundController>().lerpBackground(false);
+				cursor.rectTransform.position = new Vector3(cursor.rectTransform.position.x, newCursorPosY, cursor.rectTransform.position.z);
             }
         }
     }

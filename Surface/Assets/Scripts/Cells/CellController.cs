@@ -21,7 +21,7 @@ public class CellController : MonoBehaviour
 
     protected virtual void Start()
 	{
-		cellState = stateCell.hide;
+		CellStateChange(stateCell.hide);
 	}
 
 	protected virtual void Update()
@@ -38,7 +38,7 @@ public class CellController : MonoBehaviour
 		}
 	}
 
-	protected virtual void OnMouseOver()
+	protected virtual void OnMouseOver()	
 	{
 		if (Input.GetButtonDown("Fire1") && isDoubleClick == false)
 		{
@@ -109,4 +109,11 @@ public class CellController : MonoBehaviour
         return nearCellList;
     }
 
+	public void Scanner()
+	{
+		foreach (CellController cell in nearCellList)
+		{
+			cell.CellStateChange(stateCell.reveal);
+		}
+	}
 }
