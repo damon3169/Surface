@@ -38,7 +38,7 @@ public class MapSelection : MonoBehaviour
 	private float timeMouseDown;
 	public bool isPopupOpen = false;
 	public Event m_Event;
-	public float firstPositionMiniMap = 1.70f;
+	public float firstPositionMiniMap = 3f;
 	public Vector3 delta;
 
 	void selectMaps()
@@ -64,6 +64,8 @@ public class MapSelection : MonoBehaviour
 			ratio = (firstPositionMiniMap * 2) / (mapOriginalSelected.Count - 1);
 			parent.transform.position = new Vector3(-firstPositionMiniMap + ratio * i, containersMapButton.transform.position.y, containersMapButton.transform.position.z);
 			parent.GetComponent<MapButtonController>().MapIndex = i;
+			Instantiate(map, parent.transform);
+			parent.GetComponent<SizeInBox>().ResizeBetter();
 			mapButtonList.Add(parent);
 			i++;
 		}

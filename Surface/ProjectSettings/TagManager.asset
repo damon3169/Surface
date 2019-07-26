@@ -11,6 +11,7 @@ TagManager:
   - Cell
   - MapSelection
   - Donjon
+  - Sprite
   layers:
   - Default
   - TransparentFX

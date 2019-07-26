@@ -66,4 +66,9 @@ public class LevelSelection : MonoBehaviour
 		SceneManager.LoadScene("MapSelection");
 	}
 
+	public void OnPushBack()
+	{
+		SceneManager.LoadScene("Menu");
+	}
+
 }

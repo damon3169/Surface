@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1894686878837008969}
   m_Layer: 0
   m_Name: button off
-  m_TagString: Untagged
+  m_TagString: Sprite
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 1894686878837008971}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.27, z: 0.1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.1}
   m_Children: []
   m_Father: {fileID: 1894686879722730256}
   m_RootOrder: 0
@@ -68,7 +68,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2a38b868186b204438b44e60350c39f4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: df98a4bc52cd44c4e888809999f32f2a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 1894686879722730256}
   - component: {fileID: 1894686879722730259}
   - component: {fileID: 1894686879722730257}
+  - component: {fileID: 2891030972229421694}
   m_Layer: 0
   m_Name: MapSelectorButton
   m_TagString: Untagged
@@ -136,7 +137,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.73, y: 1.06}
   m_EdgeRadius: 0
 --- !u!114 &1894686879722730257
 MonoBehaviour:
@@ -151,3 +152,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MapIndex: 0
+--- !u!114 &2891030972229421694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1894686879722730258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 527c0197ec4c18e4cbc0d403594aa0e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Childs: []
