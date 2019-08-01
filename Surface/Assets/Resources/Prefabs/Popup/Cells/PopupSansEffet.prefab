@@ -15,7 +15,7 @@ PrefabInstance:
     - target: {fileID: 7981800294022051596, guid: 7bfaa8c2c32396645ac24ea5387ad89b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7981800294022051596, guid: 7bfaa8c2c32396645ac24ea5387ad89b,
         type: 3}
@@ -74,14 +74,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7981800293915664784, guid: 7bfaa8c2c32396645ac24ea5387ad89b,
         type: 3}
-      propertyPath: m_FontSize
-      value: 100
+      propertyPath: m_Text
+      value: "Vous etes rentre dans \nun obstacle, piochez \nune carte incident"
       objectReference: {fileID: 0}
     - target: {fileID: 7981800293915664784, guid: 7bfaa8c2c32396645ac24ea5387ad89b,
         type: 3}
-      propertyPath: m_Text
-      value: "Vous etes rentr\uB8E4ans \nun obstacle, piochez \nune carte incident"
+      propertyPath: m_CharacterSize
+      value: 0.12
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 0}
+    - target: {fileID: 7981800293915664784, guid: 7bfaa8c2c32396645ac24ea5387ad89b,
+        type: 3}
+      propertyPath: m_FontSize
+      value: 100
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7bfaa8c2c32396645ac24ea5387ad89b, type: 3}

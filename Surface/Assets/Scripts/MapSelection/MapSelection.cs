@@ -7,11 +7,9 @@ public class MapSelection : MonoBehaviour
 {
 	public List<GameObject> Maps;
 	List<GameObject> SelectedMaps;
-	int numPlayerSelected = 2;
 
 	public Vector2 StartPos;
 	public Vector2 StartPos2;
-	int SwipeID = -1;
 	public float minMovement = 20.0f;
 	bool goingRight;
 	float scaleX;

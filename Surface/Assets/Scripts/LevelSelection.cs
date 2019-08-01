@@ -20,12 +20,13 @@ public class LevelSelection : MonoBehaviour
 
 	private void Update()
 	{
-		text.text = numPlayer.ToString();
+		if (text != null)
+			text.text = numPlayer.ToString();
 	}
 
 	public void OnPushTwoPlayer()
 	{
-		PlayerPrefs.SetInt("numberCase",10);
+		PlayerPrefs.SetInt("numberCase", 10);
 		PlayerPrefs.SetInt("numberPlayer", 2);
 		SceneManager.LoadScene("Play");
 	}
@@ -69,6 +70,11 @@ public class LevelSelection : MonoBehaviour
 	public void OnPushBack()
 	{
 		SceneManager.LoadScene("Menu");
+	}
+
+	public void OnPushBackMap()
+	{
+		SceneManager.LoadScene("LevelSelect 1");
 	}
 
 }

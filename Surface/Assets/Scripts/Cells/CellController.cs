@@ -12,15 +12,17 @@ public class CellController : MonoBehaviour
 	public enum stateCell { reveal, hide };
 	public stateCell cellState = stateCell.hide;
 	public Sprite hideCellSprite;
+	public List<Sprite> hideCellsSprites;
 	public Sprite revealCellSprite;
 	public PlayerController submarine;
 	public GameObject myPopup;
 	public float timeHold;
 	public float timeHoldRelease = 0.8f;
-    public List<CellController> nearCellList = new List<CellController>();
+	public List<CellController> nearCellList = new List<CellController>();
 
-    protected virtual void Start()
+	protected virtual void Start()
 	{
+		hideCellSprite = hideCellsSprites[Random.Range(0, hideCellsSprites.Count)];
 		CellStateChange(stateCell.hide);
 	}
 
@@ -38,7 +40,7 @@ public class CellController : MonoBehaviour
 		}
 	}
 
-	protected virtual void OnMouseOver()	
+	protected virtual void OnMouseOver()
 	{
 		if (Input.GetButtonDown("Fire1") && isDoubleClick == false)
 		{
@@ -50,7 +52,7 @@ public class CellController : MonoBehaviour
 	{
 		// si player a cote de this
 		timeHold = Time.time;
-		if (isDoubleClick == true && timerForDoubleClick < delay && submarine.nearCellList.Contains(this) && !submarine.isMovingToCell)
+		if (timerForDoubleClick < delay && submarine.nearCellList.Contains(this) && !submarine.isMovingToCell)
 		{
 			//Faire se deplacer le player si player pas encore sur cette cell
 			if (submarine.currentCell != this)
@@ -96,7 +98,10 @@ public class CellController : MonoBehaviour
 		{
 			Destroy(GameObject.FindGameObjectWithTag("popup"));
 		}
-		Instantiate(myPopup);
+		if (myPopup != null)
+		{
+			Instantiate(myPopup);
+		}
 	}
 
 	public virtual void EffectPlayerIn()
@@ -104,10 +109,10 @@ public class CellController : MonoBehaviour
 
 	}
 
-    public List<CellController> GetNearCellList()
-    {
-        return nearCellList;
-    }
+	public List<CellController> GetNearCellList()
+	{
+		return nearCellList;
+	}
 
 	public void Scanner()
 	{

@@ -15,7 +15,7 @@ PrefabInstance:
     - target: {fileID: 1761277491834381300, guid: 14c971a2f642994458f5df976590352a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1761277491834381300, guid: 14c971a2f642994458f5df976590352a,
         type: 3}
@@ -79,6 +79,5 @@ PrefabInstance:
       propertyPath: m_Text
       value: Power Up
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 0}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14c971a2f642994458f5df976590352a, type: 3}

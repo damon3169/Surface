@@ -95,9 +95,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cellState: 1
   hideCellSprite: {fileID: 21300000, guid: a7234d78ac4fc8a4aa27352d6607720f, type: 3}
+  hideCellsSprites:
+  - {fileID: 21300000, guid: d6b85bdd1c4cb0649901d862203a214c, type: 3}
+  - {fileID: 21300000, guid: c09a20c11c5350d428921e15ca96cdbb, type: 3}
+  - {fileID: 21300000, guid: 76954583533b8f34a8d2a3d88f6ce418, type: 3}
+  - {fileID: 21300000, guid: ec4f0b55599d1f64fa5c808e7886f781, type: 3}
+  - {fileID: 21300000, guid: 669a372e9b27f3147afb0763c9304199, type: 3}
+  - {fileID: 21300000, guid: a7234d78ac4fc8a4aa27352d6607720f, type: 3}
   revealCellSprite: {fileID: 21300000, guid: 69d86dda82e722342be0795776eee135, type: 3}
   submarine: {fileID: 0}
-  myPopup: {fileID: 6354725341594188844, guid: cfaa9e5fd9b2dab4ba8126e1a0e4a286, type: 3}
+  myPopup: {fileID: 0}
   timeHold: 0
   timeHoldRelease: 0.8
   nearCellList: []

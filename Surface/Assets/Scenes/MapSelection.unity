@@ -368,7 +368,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1046649108}
-        m_MethodName: OnPushBack
+        m_MethodName: OnPushBackMap
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -728,12 +728,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Maps:
-  - {fileID: 6175002752300231440, guid: 6f64a2688e721be44911057d9140d8f6, type: 3}
-  - {fileID: 6175002752300231440, guid: 6f64a2688e721be44911057d9140d8f6, type: 3}
-  - {fileID: 6175002752300231440, guid: 7fb212c2ad1f16b45aa1829a89de548a, type: 3}
-  - {fileID: 6175002752300231440, guid: 7fb212c2ad1f16b45aa1829a89de548a, type: 3}
-  - {fileID: 6175002752300231440, guid: 7fb212c2ad1f16b45aa1829a89de548a, type: 3}
-  - {fileID: 6175002752300231440, guid: 7fb212c2ad1f16b45aa1829a89de548a, type: 3}
+  - {fileID: 9174492976625933287, guid: 9da37c36fc43324448c2c231ad4e14ec, type: 3}
+  - {fileID: 2585564172517486321, guid: a18e283e978187346b43ea69179277c7, type: 3}
+  - {fileID: 3222772637259342602, guid: 77de5b0b89466594c8459e2b0c31cdff, type: 3}
   StartPos: {x: 0, y: 0}
   StartPos2: {x: 0, y: 0}
   minMovement: 20
