@@ -40,7 +40,7 @@ public class MutePanel : DrawerPanel
 			else
 			{
 				timerStart = false;
-				DrawerOut(this.hidingPosition+ new Vector3 (0,-50,0),true);
+				DrawerOut(this.hidingPosition+ new Vector3 (0,-50,0),true,true);
 			}
 		}
 	}

@@ -14,8 +14,12 @@ public class MapButtonController : MonoBehaviour
 
 	private void OnMouseDown()
 	{
-		mapSelection.ChangeFocusedMap(MapIndex);
-		mapSelection.lerpMap();
+		if (GameObject.FindGameObjectsWithTag("popup").Length==0)
+		{
+			mapSelection.ChangeFocusedMap(MapIndex);
+			mapSelection.lerpMap();
+		}
+
 	}
 
 	private void Update()

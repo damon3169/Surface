@@ -103,7 +103,8 @@ public class MapSelection : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		if(!isPopupOpen){
+		if (!isPopupOpen && !isLerping)
+		{
 			foreach (var T in Input.touches)
 			{
 				var P = T.position;
@@ -112,18 +113,10 @@ public class MapSelection : MonoBehaviour
 					StartPos = P;
 				}
 				delta = P - StartPos;
-				Debug.Log(StartPos+" "+ T.position);
+				Debug.Log(StartPos + " " + T.position);
 				if (T.phase == TouchPhase.Moved && delta.magnitude > minMovement)
 				{
-					if (this.transform.position.x > mapMinPositionX && mapFocused > 0)
-					{
-						ChangeFocusedMap(mapFocused - 1);
-					}
-
-					else if (this.transform.position.x < mapMaxPositionX && mapFocused < SelectedMaps.Count - 1)
-					{
-						ChangeFocusedMap(mapFocused + 1);
-					}
+					
 					if (Mathf.Abs(delta.x) > Mathf.Abs(delta.y))
 					{
 						lerpMapStop();
@@ -134,7 +127,12 @@ public class MapSelection : MonoBehaviour
 							{
 
 								transform.position += new Vector3(0.05f, 0, 0);
+								if (delta.magnitude > 150 && mapFocused > 0)
+								{
+									ChangeFocusedMap(mapFocused - 1);
+								}
 							}
+
 
 						}
 						else
@@ -145,13 +143,13 @@ public class MapSelection : MonoBehaviour
 							{
 
 								transform.position += new Vector3(-0.05f, 0, 0);
+								if (delta.magnitude > 150 && mapFocused < SelectedMaps.Count - 1)
+								{
+									ChangeFocusedMap(mapFocused + 1);
+								}
 							}
 						}
 					}
-				}
-				else if (T.phase == TouchPhase.Canceled || T.phase == TouchPhase.Ended)
-				{
-					lerpMap();
 				}
 			}
 		}
@@ -179,11 +177,12 @@ public class MapSelection : MonoBehaviour
 		mapMinPositionX = -widthCollider * mapFocused + widthCollider / 2;
 		targetPostion = new Vector3(-widthCollider * mapFocused, 0, 0);
 		mapMaxPositionX = -widthCollider * mapFocused - widthCollider / 2;
+		lerpMap();
 	}
 
 	void OnGUI()
 	{
-		if (!isPopupOpen)
+		if (!isPopupOpen && !isLerping)
 		{
 			m_Event = Event.current;
 
@@ -193,29 +192,24 @@ public class MapSelection : MonoBehaviour
 				timeMouseDown = Time.time;
 			}
 
-			if (m_Event.type == EventType.MouseDrag)
+			if (m_Event.type == EventType.MouseDrag && !isLerping)
 			{
 				var delta2 = m_Event.mousePosition - StartPos2;
 				if (delta2.magnitude > minMovement)
 				{
-					if (this.transform.position.x > mapMinPositionX && mapFocused > 0)
-					{
-						ChangeFocusedMap(mapFocused - 1);
-					}
-
-					else if (this.transform.position.x < mapMaxPositionX && mapFocused < SelectedMaps.Count - 1)
-					{
-						ChangeFocusedMap(mapFocused + 1);
-					}
 					if (Mathf.Abs(delta2.x) > Mathf.Abs(delta2.y))
 					{
-						lerpMapStop();
 						if (delta2.x > 0)
 						{
 
 							if (this.transform.position.x < 0)
 							{
 								transform.position += new Vector3(0.2f, 0, 0);
+								if (delta2.magnitude > 150 && mapFocused > 0)
+								{
+									ChangeFocusedMap(mapFocused - 1);
+									lerpMap();
+								}
 							}
 
 						}
@@ -224,6 +218,12 @@ public class MapSelection : MonoBehaviour
 							if (this.transform.position.x > -(SelectedMaps[SelectedMaps.Count - 1].transform.localPosition.x + widthCollider / 2))
 							{
 								transform.position += new Vector3(-0.2f, 0, 0);
+								if (delta2.magnitude > 150 && mapFocused < SelectedMaps.Count - 1)
+								{
+									ChangeFocusedMap(mapFocused + 1);
+									lerpMap();
+
+								}
 							}
 						}
 					}
@@ -236,7 +236,11 @@ public class MapSelection : MonoBehaviour
 				{
 
 				}
-				lerpMap();
+				if (!isLerping)
+				{
+					lerpMap();
+				}
+				
 			}
 		}
 	}

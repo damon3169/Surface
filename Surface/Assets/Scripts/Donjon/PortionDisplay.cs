@@ -12,8 +12,11 @@ public class PortionDisplay : MonoBehaviour
     private List<GameObject[]> instancedCells;
     public GameObject[] portionSelectors;
 	public GameObject resisableCont;
+	public GameObject portionSelected;
+	private GameObject go;
 
-    private void Start()
+
+	private void Start()
     {
         portionSelectors = GameObject.FindGameObjectsWithTag("PortionSelector");
 		foreach (GameObject portion in portionSelectors)
@@ -43,7 +46,7 @@ public class PortionDisplay : MonoBehaviour
 
 		GameObject cont = Instantiate(resisableCont);
 		cont.name = portion.name + " cells";
-
+		portionSelected = cont;
 		float posX = 0;
         int posY = 0;
         for (int i = 0; i < portionNow.Length; i++)
@@ -83,7 +86,7 @@ public class PortionDisplay : MonoBehaviour
                 //Debug.Log("POSX AFTER OFFSET AT LINE " + i + " AND CASE " + j + ": " + posX);
                 if (portionNow[i].Length == 1)
                 {
-                    GameObject go = Instantiate(cellArray[portionNow[i][i]]);
+                     go = Instantiate(cellArray[portionNow[i][i]]);
                     go.transform.position = new Vector3(posX + casePosition, -portionNow.Length + 1, 0);
                     submarine.currentCell = go.GetComponent<CellController>();
                     submarine.Activate();
@@ -95,7 +98,7 @@ public class PortionDisplay : MonoBehaviour
                 }
                 else if (portionNow[i].Length == 2)
                 {
-                    GameObject go = Instantiate(cellArray[portionNow[i][j]]);
+                     go = Instantiate(cellArray[portionNow[i][j]]);
                     go.transform.position = new Vector3(posX + casePosition, -portionNow.Length + i + posY, 0);
 					go.transform.parent = cont.transform;
 
@@ -105,7 +108,7 @@ public class PortionDisplay : MonoBehaviour
                 }
                 else if (portionNow[i].Length == 3)
                 {
-                    GameObject go = Instantiate(cellArray[portionNow[i][j]]);
+                     go = Instantiate(cellArray[portionNow[i][j]]);
                     go.transform.position = new Vector3(posX + casePosition, -portionNow.Length + i + posY, 0);
 					go.transform.parent = cont.transform;
 
@@ -115,7 +118,7 @@ public class PortionDisplay : MonoBehaviour
                 }
                 else
                 {
-                    GameObject go = Instantiate(cellArray[portionNow[i][j]]);
+                     go = Instantiate(cellArray[portionNow[i][j]]);
                     go.transform.position = new Vector3(posX + casePosition, -portionNow.Length + i + posY, 0);
 					go.transform.parent = cont.transform;
 
@@ -123,18 +126,20 @@ public class PortionDisplay : MonoBehaviour
                     GameObject[] sameLineCellsArray = sameLineCells.ToArray();
                     if (sameLineCells.Count.Equals(portionNow[i].Length)) instancedCells.Add(sameLineCellsArray);
                 }
-            }
+				go.GetComponent<CellController>().cellRow = i;
+
+			}
         }
 
         GameObject[][] instancedCellsArray = instancedCells.ToArray();
         for (int i = 0; i < instancedCellsArray.Length; i++)
         {
-            Debug.Log("Length: " + instancedCellsArray.Length);
-            Debug.Log("I: " + i);
+            //Debug.Log("Length: " + instancedCellsArray.Length);
+           // Debug.Log("I: " + i);
             for(int j = 0; j < instancedCellsArray[i].Length; j++)
             {
-                Debug.Log("Length["+i+"]: " + instancedCellsArray[i].Length);
-                Debug.Log("J: " + j);
+             //   Debug.Log("Length["+i+"]: " + instancedCellsArray[i].Length);
+              //  Debug.Log("J: " + j);
                 if (i == 0 && j == 0)
                 {
                     instancedCellsArray[i][j].GetComponent<CellController>().GetNearCellList().Add(instancedCellsArray[i+1][j].GetComponent<CellController>());//au dessus a gauche

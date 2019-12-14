@@ -25,13 +25,13 @@ public class GameController : MonoBehaviour
 	private int frameCount = 0;
 	public bool isEventOn = false;
 	//changer pour changer timer random event
-	private float timeBetweenEvents = 0f;
+	private float timeBetweenEvents = 1f;
 	public float timeLastEvent = 0f;
 	public RunInBackground background;
 	public RandomEventController RandomeEventController;
 	public GameObject pausePopupPrefab;
 	private GameObject pausePopup;
-	public float TimerPause = 60f;
+	public float TimerPause = 5f;
 	public TextMesh textPausePopup;
 	private bool firstTime = true;
 	// Start is called before the first frame update
@@ -70,7 +70,8 @@ public class GameController : MonoBehaviour
 				{
 					if (timeBetweenEvents < Time.time - timeLastEvent)
 					{
-						timeBetweenEvents = 180f;
+						timeBetweenEvents = 120f;
+						timeLastEvent = Time.time;
 						RandomeEventController.launchRandomEvent();
 					}
 				}

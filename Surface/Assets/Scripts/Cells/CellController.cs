@@ -19,6 +19,7 @@ public class CellController : MonoBehaviour
 	public float timeHold;
 	public float timeHoldRelease = 0.8f;
 	public List<CellController> nearCellList = new List<CellController>();
+	public int cellRow;
 
 	protected virtual void Start()
 	{

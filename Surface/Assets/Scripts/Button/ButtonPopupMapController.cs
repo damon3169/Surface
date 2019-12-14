@@ -9,8 +9,6 @@ public class ButtonPopupMapController : ButtonController
 		GameObject.FindGameObjectWithTag("MapSelection").GetComponent<MapSelection>().isPopupOpen = true;
 		this.transform.parent.parent.parent.GetComponent<Collider2D>().enabled = false;
 		DestroyImmediate(this.transform.parent.parent.parent.GetComponent<Rigidbody2D>());
-
-		Debug.Log(GameObject.FindGameObjectWithTag("MapSelection").GetComponent<MapSelection>().isPopupOpen);
 	}
 
 	protected override void OnMouseDown()

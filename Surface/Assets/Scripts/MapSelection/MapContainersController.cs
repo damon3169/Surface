@@ -10,7 +10,7 @@ public class MapContainersController : MonoBehaviour
 
 	private void OnMouseUp()
 	{
-		if (this.transform.parent.GetComponent<MapSelection>().m_Event.mousePosition == this.transform.parent.GetComponent<MapSelection>().StartPos2 && !this.transform.parent.GetComponent<MapSelection>().isPopupOpen)
+		if (this.transform.parent.GetComponent<MapSelection>().m_Event.mousePosition == this.transform.parent.GetComponent<MapSelection>(). StartPos2 && !this.transform.parent.GetComponent<MapSelection>().isPopupOpen)
 		{
 			this.transform.GetChild(0).GetComponent<MapManager>().openPopup();
 		}
@@ -31,7 +31,6 @@ public class MapContainersController : MonoBehaviour
 
 					Vector2 ray = Camera.main.ScreenToWorldPoint(touch.position);
 					hit = Physics2D.Raycast(ray, ray.normalized, 1);
-					Debug.Log(this.transform.parent.GetComponent<MapSelection>().delta.magnitude);
 					if (hit.transform.GetComponent<MapContainersController>() != null)
 					{
 						if (this.transform.parent.GetComponent<MapSelection>().delta.magnitude < this.transform.parent.GetComponent<MapSelection>().minMovement)
